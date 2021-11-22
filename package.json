@@ -1,8 +1,8 @@
 {
-    "name": "example-project",
-    "description": "Build scripts for Heroku",
+    "name": "traderuen",
+    "description": "trading runeterra cards",
     "engines": {
-      "node": ">= 14"
+      "node": ">= 16.x"
     },
     "scripts": {
       "build": "npm install --prefix client && npm run build --prefix client",
