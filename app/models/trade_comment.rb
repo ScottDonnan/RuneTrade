@@ -1,0 +1,2 @@
+class TradeComment < ApplicationRecord
+end

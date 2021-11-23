@@ -55284,6 +55284,27 @@ set_two = [
   ]
 
   set_one.each do |card|
-    byebug  
-    Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], type: card[:type], supertype: card[:supertype])
+    if card[:collectible] == true
+        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+    end
   end
+
+  set_two.each do |card|
+    if card[:collectible] == true
+        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+    end
+  end
+
+  set_three.each do |card|
+    if card[:collectible] == true
+        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+    end
+  end
+
+  set_four.each do |card|
+    if card[:collectible] == true
+        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+    end
+  end
+
+
