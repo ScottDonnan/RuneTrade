@@ -55283,28 +55283,45 @@ set_two = [
     }
   ]
 
-  set_one.each do |card|
-    if card[:collectible] == true
-        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
-    end
+  # set_one.each do |card|
+  #   if card[:collectible] == true
+  #       Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+  #   end
+  # end
+
+  # set_two.each do |card|
+  #   if card[:collectible] == true
+  #       Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+  #   end
+  # end
+
+  # set_three.each do |card|
+  #   if card[:collectible] == true
+  #       Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+  #   end
+  # end
+
+  # set_four.each do |card|
+  #   if card[:collectible] == true
+  #       Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
+  #   end
+  # end
+
+  # Create 2 users
+
+  User.create(user_name: "Scott", password_digest: "password", email: 'scott@scott.com')
+  User.create(user_name: "Clayton", password_digest: "password", email: 'clayton@clayton.com')
+
+
+  # add cards to user library
+
+  for i in 1..10 do
+    random_card_id = rand(1000)
+    Library.create(user_id: 1, card_id: random_card_id)
   end
 
-  set_two.each do |card|
-    if card[:collectible] == true
-        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
-    end
+  for i in 1..10 do
+    random_card_id = rand(1000)
+    Library.create(user_id: 2, card_id: random_card_id)
   end
-
-  set_three.each do |card|
-    if card[:collectible] == true
-        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
-    end
-  end
-
-  set_four.each do |card|
-    if card[:collectible] == true
-        Card.create(name: card[:name], set: card[:set], card_image: card[:assets][0][:gameAbsolutePath], full_image: card[:assets][0][:fullAbsolutePath], region: card[:region], rarity: card[:rarity], card_type: card[:type], supertype: card[:supertype]) 
-    end
-  end
-
 
