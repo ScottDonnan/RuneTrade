@@ -4,7 +4,7 @@ class UsersController < ApplicationController
         
     end
     
-    def create
+    def signup
         user = User.create(user_params)
         if user.valid?
             render json: user
