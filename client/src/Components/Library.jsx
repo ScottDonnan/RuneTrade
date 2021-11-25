@@ -45,7 +45,7 @@ function Library({fullCardList}) {
 
     return (
         <div>
-            CardList!!
+            Library!!
             <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
             <SearchBar setSearchBarValue={setSearchBarValue} />
             <Card cardList={filteredCardList.slice(count, count+15)} />
