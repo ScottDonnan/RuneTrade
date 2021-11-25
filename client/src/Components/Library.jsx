@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
-import Card from "./Card"
-import SearchBar from "./SearchBar"
-import FilterFields from "./FilterFields"
+import FilterFields from './FilterFields'
+import SearchBar from './SearchBar'
+import Card from './Card'
 
-function CardList({fullCardList}) {
+function Library({fullCardList}) {
     const [searchBarValue, setSearchBarValue] = useState("")
     const [selectedRegion, setSelectedRegion] = useState(["Bandle City", "Bilgewater", "Demacia", "Freljord", "Ionia", "Noxus", "Piltover & Zaun", "Shadow Isles", "Shurima", "Targon"])
     const [selectedType, setSelectedType] = useState("")
@@ -55,4 +55,4 @@ function CardList({fullCardList}) {
     )
 }
 
-export default CardList
+export default Library

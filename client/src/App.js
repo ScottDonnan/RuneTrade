@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UnauthenticatedApp from "./Components/UnauthenticatedApp";
+import AuthenticatedApp from "./Components/AuthenticatedApp";
+import Navigation from "./Components/Navigation"
 
 function App() {
   const [fullCardList, setFullCardList] = useState([])
+  const [loggedInUser, setLoggedInUser] = useState({id: 1})
 
   useEffect(() => {
     fetch('/cards')
@@ -13,7 +16,8 @@ function App() {
 
   return (
     <BrowserRouter>
-        <UnauthenticatedApp fullCardList={fullCardList}/>
+        <Navigation loggedInUser={loggedInUser} />
+        {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} /> : <UnauthenticatedApp fullCardList={fullCardList}/>}
     </BrowserRouter>
   );
 }
