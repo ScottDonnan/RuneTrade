@@ -7,6 +7,6 @@ class Trade < ApplicationRecord
 
     has_many :trade_comments 
 
-    validates :trade_proposer_id, :proposer_library_id presence: true
+    validates :trade_proposer_id, :proposer_library_id, presence: true
     
 end

@@ -17,4 +17,8 @@ class User < ApplicationRecord
 
     validates :user_name, :password_digest, :email, presence: true
     validates :user_name, uniqueness: true
+
+    def user_card_lib(card)
+        self.libraries.find_by(card_id: card)
+    end
 end

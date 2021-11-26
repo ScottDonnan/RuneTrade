@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom'
 function Navigation({loggedInUser}) {
     
     const authenticatedNavBar = <><li class="nav-item">
-                                    <Link to="/library" class="nav-link" href="#">Library</Link>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Trade</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Loot</a>
-                                </li></>
+                                        <Link to="/library" class="nav-link" href="#">Library</Link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <Link to='/trade' class="nav-link" href="#">Trade</Link>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Loot</a>
+                                    </li></>
 
     return(
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

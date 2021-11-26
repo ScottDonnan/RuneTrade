@@ -7,5 +7,5 @@ class Library < ApplicationRecord
 
     has_many :accepting_libraries, foreign_key: :accepter_library, class_name: 'Trade'
     has_many :proposer_libraries, through: :accepting_libraries
-
+    
 end
