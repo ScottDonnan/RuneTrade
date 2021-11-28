@@ -7,6 +7,7 @@ function NewTradeForm({loggedInUser, userLibrary}) {
     let tradeComment
 
     function getLibrary(e) {
+        e.preventDefault()
         tradeComment = e.target[1].value
         fetch(`/users/${loggedInUser.id}/${e.target[0].value}`)
         .then(resp => {

@@ -4,6 +4,15 @@ class TradesController < ApplicationController
         render json: Trade.all
     end
 
+    def show
+        trade = Trade.find_by(id: params[:id])
+        if trade.valid?
+            render json: trade
+        else
+            render json: {errors: "trade does not exist"}, status: :not_found
+        end
+    end
+
     def update
         trade = Trade.find(params[:id])
         if trade.update(trade_update_params)

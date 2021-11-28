@@ -10,6 +10,7 @@ function CardList({fullCardList}) {
     const [selectedSet, setSelectedSet] = useState("")
     const [selectedRarity, setSelectedRarity] = useState("")
     const [count, setCount] = useState(0)
+    const [seeDetails, setSeeDetails] = useState(null)
 
     
     // function findRegion(card) {
