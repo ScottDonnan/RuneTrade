@@ -1,26 +1,16 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
-function TradeCard({tradeProposer, offeredCard, userLibrary}) {
+function TradeCard({tradeProposer, offeredCard, userLibrary, handleTradeAccepterOffer}) {
     const proposerName = tradeProposer.user_name
-    const proposerLib = offeredCard.card_id
-    let card = {}
-    
-    useEffect(() => {
-        fetch(`/cards/${proposerLib}`)
-        .then(resp => resp.json())
-        .then(data => {
-            card = {...data}
-        })
-    }, [])
     
     return (
         <div class="card bg-light" style={{width: "18rem"}}>
-            <img src="..." class="card-img-top" alt="image for ..." />
+            <img src={offeredCard.card?.card_image} class="card-img-top" alt="image for ..." />
             <div class="card-body">
-                <h5 class="card-title">{proposerLib}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <form class="col g-3">
-                    {proposerName}{proposerLib}
+                <h5 class="card-title">{offeredCard.card?.name}</h5>
+                <p class="card-text">User: {proposerName} <br /> Would like to trade this card.</p>
+                
+                <form class="col g-3" onSubmit={(e) => handleTradeAccepterOffer(e, tradeProposer.id)}>
                     <div col-md-6>
                         <label for="inputState" class="form-label">Select Trade Card</label>
                         <select id="inputState" class="form-select">
@@ -28,7 +18,11 @@ function TradeCard({tradeProposer, offeredCard, userLibrary}) {
                             {userLibrary.map(card => <option key={card.id} value={card.id}>{card.name}</option>)}
                         </select>
                     </div>
-                    <a href="#" class="btn btn-primary">Submit Trade</a>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Add a Note</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
+                    </div>
+                    <button href="#" class="btn btn-primary">Submit Trade</button>
                 </form>
             </div>
         </div>  

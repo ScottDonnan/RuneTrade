@@ -3,6 +3,7 @@ import TradeCard from "./TradeCard"
 
 function AvailableTrades({loggedInUser, userLibrary}) {
     const [tradesList, setTradesList] = useState([])
+    const openMarketTrades = tradesList.filter(trade => trade.trade_proposer_id !== loggedInUser.id && trade.executed === null)
     
     useEffect(() => {
         fetch('/trades')
@@ -11,12 +12,21 @@ function AvailableTrades({loggedInUser, userLibrary}) {
             setTradesList(data)
         })
     }, [])
+
+    function handleTradeAccepterOffer(e) {
+        e.preventDefault()
+        console.log(e)
+        // trade_propser_id = 
+        // trade_accepter_id = loggedInUser.id
+        // propser_library_id = 
+        // accepter_library_id = event
+    }
+
     
-    const openMarketTrades = tradesList.filter(trade => trade.trade_proposer_id !== loggedInUser.id && trade.executed === null)
-    // debugger
+
     return (
         <div>
-            {openMarketTrades.map(trade => <TradeCard key={trade.id} tradeProposer={trade.trade_proposer} offeredCard={trade.proposer_library} userLibrary={userLibrary} />)}
+            {openMarketTrades.map(trade => <TradeCard key={trade.id} tradeProposer={trade.trade_proposer} offeredCard={trade.proposer_library} userLibrary={userLibrary} handleTradeAccepterOffer={handleTradeAccepterOffer}/>)}
         </div>
     )
 }
