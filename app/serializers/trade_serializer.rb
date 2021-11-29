@@ -6,4 +6,7 @@ class TradeSerializer < ActiveModel::Serializer
 
   belongs_to :proposer_library
   belongs_to :accepter_library
+
+  has_many :trade_comments
+  # has_many :users, through: :trade_comments
 end

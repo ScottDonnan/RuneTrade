@@ -3,7 +3,7 @@ class LibrariesController < ApplicationController
     def user_library
         user = User.find_by(id: params[:id])
         if user.valid?
-            render json: user.cards
+            render json: user.libraries
         else
             render json: {errors: user.errors.full_messages}, status: :not_found
         end

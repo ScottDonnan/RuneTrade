@@ -14,13 +14,15 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
         .then(resp => resp.json())
         .then(data => setUserLibrary(data))
     }, [])
+
+    const userLibraryCards = userLibrary.map(library => library.card)
     
     return(
         <div>
             Authenticated App!!
             <Routes>
                 <Route path={'/trade'} element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} />} />
-                <Route path='/library' element={<Library fullCardList={userLibrary} />} />
+                <Route path='/library' element={<Library fullCardList={userLibraryCards} />} />
                 <Route path='/cards' element={<CardList fullCardList={fullCardList} />} />
                 <Route exact path='/' element={<Home />} />
             </Routes>

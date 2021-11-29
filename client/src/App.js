@@ -6,7 +6,7 @@ import Navigation from "./Components/Navigation"
 
 function App() {
   const [fullCardList, setFullCardList] = useState([])
-  const [loggedInUser, setLoggedInUser] = useState({id: 1})
+  const [loggedInUser, setLoggedInUser] = useState({id: 2})
 
   useEffect(() => {
     fetch('/cards')

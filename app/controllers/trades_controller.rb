@@ -1,7 +1,7 @@
 class TradesController < ApplicationController
     
     def index
-        render json: Trade.all, include: ['proposer_library', 'proposer_library.card', 'trade_proposer', 'trade_accepter', 'accepter_library']
+        render json: Trade.all, include: ['proposer_library', 'proposer_library.card', 'trade_proposer', 'trade_accepter', 'accepter_library', 'trade_comments.user']
     end
 
     def show
