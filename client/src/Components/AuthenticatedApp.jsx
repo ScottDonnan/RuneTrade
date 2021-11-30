@@ -4,6 +4,7 @@ import {Routes, Route} from 'react-router-dom'
 import Library from "./Library"
 import Home from './Home'
 import TradeList from './TradeList'
+import NewTradeForm from './NewTradeForm'
 
 
 function AuthenticatedApp({fullCardList, loggedInUser}) {
@@ -21,10 +22,10 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
         <div>
             Authenticated App!!
             <Routes>
-                <Route path={'/trade'} element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} />} />
-                <Route path='/library' element={<Library fullCardList={userLibraryCards} />} />
-                <Route path='/cards' element={<CardList fullCardList={fullCardList} />} />
                 <Route exact path='/' element={<Home />} />
+                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} />} />
+                <Route path='library' element={<Library fullCardList={userLibraryCards} />} />
+                <Route path='cards' element={<CardList fullCardList={fullCardList} />} />
             </Routes>
         </div>       
     )

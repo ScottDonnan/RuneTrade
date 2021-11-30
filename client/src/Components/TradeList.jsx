@@ -22,9 +22,11 @@ function TradeList({loggedInUser, userLibrary}) {
         <div>
             TradeList!!!
             <TradeListNav />
-            <MyTrades tradesList={tradesList} loggedInUser={loggedInUser}/>
-            <NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} />
-            <AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} />
+            <Routes>
+                <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} />} />
+                <Route path="mytrades" element={<MyTrades tradesList={tradesList} loggedInUser={loggedInUser}/>} />
+                <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} />} />
+            </Routes>
             
         </div>
     )
