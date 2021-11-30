@@ -73,7 +73,21 @@ function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExec
     }
 
     function returnTrade(trade) {
-        console.log('return this trade')
+        fetch(`/trades/${trade.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ accepter_library_id: null, trade_accepter_id: null})
+        })
+        .then(resp => {
+            if (resp.ok) {
+                debugger
+                console.log('trade declined')
+                resp.json().then(data => console.log(data))
+                updateListedStatus(trade.accepter_library_id, false)
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
     }
 
     function cancelTrade(trade) {
