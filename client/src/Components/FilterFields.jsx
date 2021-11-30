@@ -10,7 +10,6 @@ function FilterFields({selectedRegion, setSelectedRegion, setSelectedType, setSe
         else if (selectedRegion.includes(newRegion)) {
             const newArray = selectedRegion.filter(region => region !== newRegion)
             if (newArray.length === 0) {
-                debugger;
                 setSelectedRegion(defaultArray)
             } else {
                 setSelectedRegion(newArray)

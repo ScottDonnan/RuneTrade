@@ -18,7 +18,7 @@ class TradesController < ApplicationController
         if trade.update(trade_update_params)
             render json: trade
         else
-            render json: {errors: "trade does not exist"}, status: :not_found
+            render json: {errors: trade.errors.full_messages}, status: :not_found
         end
     end
 
@@ -28,6 +28,16 @@ class TradesController < ApplicationController
             render json: trade
         else 
             render json: { errors: trade.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        trade = Trade.find_by(id: params[:id])
+        if trade.valid?
+            trade.destroy
+            head :no_content
+        else
+            render json: { errors: trade.errors.full_messages }, status: :not_found
         end
     end
 

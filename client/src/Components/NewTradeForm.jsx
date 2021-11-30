@@ -1,9 +1,8 @@
 import {useState} from 'react'
 
-function NewTradeForm({loggedInUser, userLibrary}) {
+function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc}) {
     
     const [tradeNote, setTradeNote] = useState('')
-    const [tradeCreateSucc, setTradeCreateSucc] = useState(null)
     let tradeComment
 
     // function getLibrary(e) {

@@ -11,7 +11,7 @@ class TradeCommentsController < ApplicationController
 
     def destroy
         comment = TradeComment.find_by(id: params[:id])
-        if comment
+        if comment.valid?
             comment.destroy
             head :no_content
         else
