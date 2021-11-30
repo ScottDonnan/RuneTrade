@@ -97,6 +97,7 @@ function NewTradeForm({loggedInUser, userLibrary}) {
 
     return (
         <div>
+            New Trade Form!!
             {tradeCreateSucc ? tradeCreatedMessage : createTradeForm}
         </div>
     )

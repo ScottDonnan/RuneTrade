@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react"
 import TradeCard from "./TradeCard"
+import Comment from "./Comment"
 
-function AvailableTrades({loggedInUser, userLibrary}) {
-    const [tradesList, setTradesList] = useState([])
-    const [accepterCardOffered, setAccepterCardOffered] = useState(false)
+function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffered, loggedInUser, userLibrary}) {
     const openMarketTrades = tradesList.filter(trade => trade.trade_proposer_id !== loggedInUser.id && trade.executed === null && trade.trade_accepter_id === null)
     let tradeComment
-    
-    useEffect(() => {
-        fetch('/trades')
-        .then(resp => resp.json())
-        .then(data => {
-            setTradesList(data)
-        })
-    }, [])
 
     function handleTradeAccepterOffer(e, tradeId) {
         e.preventDefault()
@@ -64,11 +55,28 @@ function AvailableTrades({loggedInUser, userLibrary}) {
         })
     }
 
+    const availableTradeList = openMarketTrades.map(trade => {
+        return <div key={trade.id}>
+                    <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
+                    <form class="col g-3" onSubmit={(e) => handleTradeAccepterOffer(e, trade.id)}>
+                        <div col-md-6>
+                            <label for="inputState" class="form-label">Select Trade Card</label>
+                            <select id="inputState" class="form-select">
+                                <option selected>Card to Trade</option>
+                                {userLibrary.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
+                            </select>
+                        </div>
+                        <Comment />
+                        {trade.trade_comments.map(comment => <div>User:{comment?.user.user_name} <br /> Comment: {comment.comment}</div>)}
+                        <button href="#" class="btn btn-primary" type="submit">Submit Trade</button>
+                    </form>
+                </div>
+    })
     
-
     return (
         <div>
-            {accepterCardOffered ? <button onClick={() => setAccepterCardOffered(false)}>another trade</button> : openMarketTrades.map(trade => <TradeCard key={trade.id} tradeComments={trade.trade_comments} id={trade.id} tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} userLibrary={userLibrary} handleTradeAccepterOffer={handleTradeAccepterOffer}/>)}
+            Available Trades!
+            { accepterCardOffered ? <button onClick={() => setAccepterCardOffered(false)}>another trade</button> : availableTradeList }
         </div>
     )
 }
