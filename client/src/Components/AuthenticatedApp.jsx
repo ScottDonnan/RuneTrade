@@ -10,13 +10,18 @@ import NewTradeForm from './NewTradeForm'
 function AuthenticatedApp({fullCardList, loggedInUser}) {
     const [userLibrary, setUserLibrary] = useState([])
     const [tradeExecuted, setTradeExecuted] = useState(false)
+    const [tradeCreateSucc, setTradeCreateSucc] = useState(null)
+    const [tradeCancelled, setTradeCancelled] = useState(false)
+    const [accepterCardOffered, setAccepterCardOffered] = useState(false)
+
+
 
 
     useEffect(() => {
         fetch(`/userlibrary/${loggedInUser.id}`)
         .then(resp => resp.json())
         .then(data => setUserLibrary(data))
-    }, [tradeExecuted])
+    }, [tradeExecuted, tradeCreateSucc, tradeCancelled, accepterCardOffered])
 
     const userLibraryCards = userLibrary.map(library => library.card)
     
@@ -25,7 +30,7 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
             Authenticated App!!
             <Routes>
                 <Route exact path='/' element={<Home />} />
-                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} />} />
+                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered}/>} />
                 <Route path='library' element={<Library fullCardList={userLibraryCards} />} />
                 <Route path='cards' element={<CardList fullCardList={fullCardList} />} />
             </Routes>

@@ -44,7 +44,7 @@ class LibrariesController < ApplicationController
     end
 
     def library_update_params
-        params.permit :user_id
+        params.permit :user_id, :listed
     end
 
 end

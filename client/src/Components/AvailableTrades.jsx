@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import TradeCard from "./TradeCard"
 import Comment from "./Comment"
 
-function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffered, loggedInUser, userLibrary}) {
+function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffered, loggedInUser, userLibrary, updateListedStatus}) {
     const openMarketTrades = tradesList.filter(trade => trade.trade_proposer_id !== loggedInUser.id && trade.executed === null && trade.trade_accepter_id === null)
+    const cardsAvailableToTrade = userLibrary.filter(library => !library.listed)
     let tradeComment
 
     function handleTradeAccepterOffer(e, tradeId) {
@@ -26,9 +27,10 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
                             createTradeNote(trade)
                         }
                     })
+                    updateListedStatus(e.target[0].value, true)
                     setAccepterCardOffered(true)
                 } else {
-                    console.log(resp)
+                    resp.json().then(data => console.log(data))
                 }
             })
         } else {
@@ -50,7 +52,7 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
             if (resp.ok) {
                 resp.json().then(data => console.log(data))
             } else {
-                console.log(resp)
+                resp.json().then(data => console.log(data))
             }
         })
     }
@@ -63,7 +65,7 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
                             <label for="inputState" class="form-label">Select Trade Card</label>
                             <select id="inputState" class="form-select">
                                 <option selected>Card to Trade</option>
-                                {userLibrary.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
+                                {cardsAvailableToTrade.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
                             </select>
                         </div>
                         <Comment />

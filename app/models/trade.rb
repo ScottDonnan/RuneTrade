@@ -9,7 +9,11 @@ class Trade < ApplicationRecord
     has_many :users, through: :trade_comments
 
     validates :trade_proposer_id, :proposer_library_id, presence: true
-    validates :proposer_library_id, uniqueness: {scope: :pending}
-    validates :accepter_library_id, uniqueness: {scope: :pending, allow_nil: true}
+    validates :accepter_library_id, :proposer_library_id, uniqueness: {scope: :pending}, if: :pending_true, allow_nil: true
+
+    def pending_true
+        # byebug
+        pending == true
+    end
     
 end

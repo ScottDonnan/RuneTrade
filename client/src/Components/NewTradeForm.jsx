@@ -1,22 +1,10 @@
 import {useState} from 'react'
 
-function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc}) {
+function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc, updateListedStatus}) {
     
     const [tradeNote, setTradeNote] = useState('')
+    const cardsAvailableToTrade = userLibrary.filter(library => !library.listed)
     let tradeComment
-
-    // function getLibrary(e) {
-    //     e.preventDefault()
-    //     tradeComment = e.target[1].value
-    //     fetch(`/users/${loggedInUser.id}/${e.target[0].value}`)
-    //     .then(resp => {
-    //         if (resp.ok) {
-    //             resp.json().then(data => createTrade(data))
-    //         } else {
-    //             console.log(resp)
-    //         }
-    //     })
-    // }
 
     function createTrade(e) {
         e.preventDefault()
@@ -38,9 +26,11 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
                         createTradeNote(trade)
                     }
                 })
+
                 setTradeCreateSucc(true)
+                updateListedStatus(e.target[0].value, true)
             } else {
-                console.log(resp)
+                resp.json().then(data => console.log(data))
             }
         })
     }
@@ -78,7 +68,7 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
                                         <label for="inputState" class="form-label">Select Trade Card</label>
                                         <select id="inputState" class="form-select">
                                             <option selected>Card to Trade</option>
-                                            {userLibrary.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
+                                            {cardsAvailableToTrade.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
                                         </select>
                                     </div>
                                     <div class="input-group input-group-lg">

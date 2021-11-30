@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import UnauthenticatedApp from "./Components/UnauthenticatedApp";
 import AuthenticatedApp from "./Components/AuthenticatedApp";
 import Navigation from "./Components/Navigation"
@@ -18,7 +18,6 @@ function App() {
     <BrowserRouter>
         <Navigation loggedInUser={loggedInUser} />
         {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} /> : <UnauthenticatedApp fullCardList={fullCardList}/>}
-        <Outlet />
     </BrowserRouter>
   );
 }

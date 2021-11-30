@@ -1,17 +1,14 @@
 import TradeListNav from "./TradeListNav"
 import NewTradeForm from "./NewTradeForm"
 import AvailableTrades from "./AvailableTrades"
+import MyAcceptedTrades from "./MyAcceptedTrades"
 import MyTrades from "./MyTrades"
 import {Routes, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
-function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted}) {
+function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, tradeCreateSucc, setTradeCreateSucc, tradeCancelled, setTradeCancelled, accepterCardOffered, setAccepterCardOffered}) {
     const [tradesList, setTradesList] = useState([])
-    const [accepterCardOffered, setAccepterCardOffered] = useState(false)
     const [tradeReturned, setTradeReturned] = useState(false)
-    const [tradeCancelled, setTradeCancelled] = useState(false)
-    const [tradeCreateSucc, setTradeCreateSucc] = useState(null)
-
 
     useEffect(() => {
         fetch('/trades')
@@ -20,15 +17,30 @@ function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted})
             setTradesList(data)
         })
     }, [accepterCardOffered, tradeExecuted, tradeCancelled, tradeCreateSucc])
+
+    function updateListedStatus(libraryId, status) {
+        fetch(`/libraries/${libraryId}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({listed: status})
+        }).then(resp => {
+            if (resp.ok) {
+                resp.json().then(data => console.log(data))
+            } else {
+                console.log(resp)
+            }
+        })
+    }
     
     return(
         <div>
             TradeList!!!
             <TradeListNav />
             <Routes>
-                <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} />} />
-                <Route path="mytrades" element={<MyTrades tradesList={tradesList} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} />} />
-                <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} />} />
+                <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} />} />
+                <Route path="my_trades" element={<MyTrades loggedInUser={loggedInUser} tradesList={tradesList} />} />
+                <Route path="my_accepted_trades" element={<MyAcceptedTrades tradesList={tradesList} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} updateListedStatus={updateListedStatus} />} />
+                <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} updateListedStatus={updateListedStatus} />} />
             </Routes>
             
         </div>
