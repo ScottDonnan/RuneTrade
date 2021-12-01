@@ -9,11 +9,11 @@ function Navigation({loggedInUser}) {
                                         <Link to='/trade' class="nav-link" href="#">Trade</Link>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Loot</a>
+                                        <Link to="loot" class="nav-link">Loot</Link>
                                     </li></>
 
     return(
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <Link to="/" class="navbar-brand" href="#">RuneTrade</Link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -32,8 +32,7 @@ function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, 
     }
     
     return(
-        <div>
-            TradeList!!!
+        <div className="wrapper">
             <TradeListNav />
             <Routes>
                 <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} />} />
