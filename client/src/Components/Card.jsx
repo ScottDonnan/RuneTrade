@@ -10,6 +10,8 @@ function Card({cardList}) {
         )
     })
 
+    console.log(cardDisplayArray)
+
     return (
         <div to="/cards/:id">
             {cardDisplayArray}

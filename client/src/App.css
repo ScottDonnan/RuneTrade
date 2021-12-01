@@ -8,3 +8,13 @@
     max-width: 250px;
     min-height: 100vh;
 }
+
+.card-back {
+    transition: transform 1s; 
+}
+
+.card-back {
+	transform: rotateY(360deg)
+		perspective(700px);
+	transform-origin: center center;
+}

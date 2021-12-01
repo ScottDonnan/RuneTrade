@@ -55308,13 +55308,13 @@ set_four = [
     end
   end
 
-  # Create 2 users
+  # # Create 2 users
 
   User.create(user_name: "Scott", password_digest: "password", email: 'scott@scott.com')
   User.create(user_name: "Clayton", password_digest: "password", email: 'clayton@clayton.com')
 
 
-  # # add cards to user library
+  # # # add cards to user library
 
   for i in 1..10 do
     random_card_id = rand(1000)

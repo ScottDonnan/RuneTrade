@@ -34,7 +34,7 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
                 <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} tradeDeclined={tradeDeclined}/>} />
                 <Route path='library' element={<Library fullCardList={userLibraryCards} />} />
                 <Route path='cards' element={<CardList fullCardList={fullCardList} />} />
-                <Route path='loot' element={<Loot fullCardList={fullCardList}/>} />
+                <Route path='loot' element={<Loot fullCardList={fullCardList} loggedInUser={loggedInUser}/>} />
             </Routes>
         </div>       
     )

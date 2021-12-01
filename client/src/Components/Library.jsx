@@ -10,11 +10,6 @@ function Library({fullCardList}) {
     const [selectedSet, setSelectedSet] = useState("")
     const [selectedRarity, setSelectedRarity] = useState("")
     const [count, setCount] = useState(0)
-
-    
-    // function findRegion(card) {
-    //     selectedRegion.includes(card.region)
-    // }
     
     const filteredCardList = fullCardList.filter(card => {
         return (
@@ -41,7 +36,16 @@ function Library({fullCardList}) {
             setCount(count-15)
         }
     }
+
+    const counts = {}
     
+    fullCardList.forEach((card) => {
+        counts[card.name] = (counts[card.name] || 0) + 1;
+    })
+
+    console.log('library counts', counts)
+    
+    console.log(filteredCardList)
 
     return (
         <div>
