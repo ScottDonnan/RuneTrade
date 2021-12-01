@@ -12,6 +12,7 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
     const [tradeExecuted, setTradeExecuted] = useState(false)
     const [tradeCreateSucc, setTradeCreateSucc] = useState(null)
     const [tradeCancelled, setTradeCancelled] = useState(false)
+    const [tradeDeclined, setTradeDeclined] = useState(false)
     const [accepterCardOffered, setAccepterCardOffered] = useState(false)
 
 
@@ -21,7 +22,7 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
         fetch(`/userlibrary/${loggedInUser.id}`)
         .then(resp => resp.json())
         .then(data => setUserLibrary(data))
-    }, [tradeExecuted, tradeCreateSucc, tradeCancelled, accepterCardOffered])
+    }, [tradeExecuted, tradeCreateSucc, tradeCancelled, accepterCardOffered, tradeDeclined])
 
     const userLibraryCards = userLibrary.map(library => library.card)
     
@@ -30,7 +31,7 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
             Authenticated App!!
             <Routes>
                 <Route exact path='/' element={<Home />} />
-                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered}/>} />
+                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} tradeDeclined={tradeDeclined}/>} />
                 <Route path='library' element={<Library fullCardList={userLibraryCards} />} />
                 <Route path='cards' element={<CardList fullCardList={fullCardList} />} />
             </Routes>

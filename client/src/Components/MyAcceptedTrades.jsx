@@ -2,7 +2,7 @@ import TradeCard from "./TradeCard"
 import Comment from "./Comment"
 import { useRoutes } from "react-router"
 
-function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExecuted, tradeCancelled, setTradeCancelled, updateListedStatus}) {
+function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExecuted, tradeCancelled, setTradeCancelled, updateListedStatus, setTradeDeclined, tradeDeclined}) {
     const myAcceptedTradesList = tradesList.filter(trade => trade.trade_proposer_id === loggedInUser.id && trade.executed !== true && trade.accepter_library_id)
     let submitButton
     let buttonToDisplay
@@ -80,9 +80,9 @@ function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExec
         })
         .then(resp => {
             if (resp.ok) {
-                debugger
                 console.log('trade declined')
                 resp.json().then(data => console.log(data))
+                setTradeDeclined(true)
                 updateListedStatus(trade.accepter_library_id, false)
             } else {
                 resp.json().then(data => console.log(data))
@@ -126,6 +126,8 @@ function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExec
         buttonToDisplay = <button onClick={() => setTradeExecuted(false)}>Another Trade</button>
     } else if (tradeCancelled) {
         buttonToDisplay = <button onClick={() => setTradeCancelled(false)}>Another Trade</button>
+    } else if(tradeDeclined) { 
+        buttonToDisplay = <button onClick={() => setTradeDeclined(false)}>Another Trade</button>
     } else {
         buttonToDisplay = MyAcceptedTradesDisplay
     }

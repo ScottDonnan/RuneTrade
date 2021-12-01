@@ -6,9 +6,8 @@ import MyTrades from "./MyTrades"
 import {Routes, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
-function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, tradeCreateSucc, setTradeCreateSucc, tradeCancelled, setTradeCancelled, accepterCardOffered, setAccepterCardOffered}) {
+function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, tradeCreateSucc, setTradeCreateSucc, tradeCancelled, setTradeCancelled, accepterCardOffered, setAccepterCardOffered, tradeDeclined, setTradeDeclined}) {
     const [tradesList, setTradesList] = useState([])
-    const [tradeReturned, setTradeReturned] = useState(false)
 
     useEffect(() => {
         fetch('/trades')
@@ -16,7 +15,7 @@ function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, 
         .then(data => {
             setTradesList(data)
         })
-    }, [accepterCardOffered, tradeExecuted, tradeCancelled, tradeCreateSucc])
+    }, [accepterCardOffered, tradeExecuted, tradeCancelled, tradeCreateSucc, tradeDeclined])
 
     function updateListedStatus(libraryId, status) {
         fetch(`/libraries/${libraryId}`, {
@@ -39,7 +38,7 @@ function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, 
             <Routes>
                 <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} />} />
                 <Route path="my_trades" element={<MyTrades loggedInUser={loggedInUser} tradesList={tradesList} setTradeCancelled={setTradeCancelled} tradeCancelled={tradeCancelled} updateListedStatus={updateListedStatus} />} />
-                <Route path="my_accepted_trades" element={<MyAcceptedTrades tradesList={tradesList} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} updateListedStatus={updateListedStatus} />} />
+                <Route path="my_accepted_trades" element={<MyAcceptedTrades tradesList={tradesList} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} updateListedStatus={updateListedStatus} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} />} />
                 <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} updateListedStatus={updateListedStatus} />} />
             </Routes>
             
