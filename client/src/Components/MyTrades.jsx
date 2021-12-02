@@ -1,4 +1,5 @@
 import TradeCard from "./TradeCard"
+import '../App.css'
 // import {useState} from 'react'
 
 function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, updateListedStatus}) {
@@ -24,14 +25,17 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
     })
 
     function Cards(trade) {
-        return <div>
+        return <div key={trade.id}>
             Trade Id: {trade.id}
             <br/>
             Executed Status: {trade.executed ? "True" : "Not Executed"}
             <br/>
-            Accepted By: {trade.trade_accepter?.user_name}
+            Proposed By: {trade.trade_proposer?.user_name}
             <br/>
-            <TradeCard key={trade.id} tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
+            <div className="mytraded-accepted-card">
+                {trade.trade_accepter ? <TradeCard tradeProposer={trade.trade_accepter} proposedLibrary={trade.accepter_library} /> : null}
+                <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
+            </div>
         </div>
     }
 

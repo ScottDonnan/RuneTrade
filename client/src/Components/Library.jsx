@@ -3,7 +3,7 @@ import FilterFields from './FilterFields'
 import SearchBar from './SearchBar'
 import Card from './Card'
 
-function Library({fullCardList}) {
+function Library({fullCardList, userLibraryCount }) {
     const [searchBarValue, setSearchBarValue] = useState("")
     const [selectedRegion, setSelectedRegion] = useState(["Bandle City", "Bilgewater", "Demacia", "Freljord", "Ionia", "Noxus", "Piltover & Zaun", "Shadow Isles", "Shurima", "Targon"])
     const [selectedType, setSelectedType] = useState("")
@@ -19,7 +19,7 @@ function Library({fullCardList}) {
             && card.set.includes(selectedSet)
             && card.rarity.toLowerCase().includes(selectedRarity.toLowerCase())
         )
-    })
+    }).slice(count, count+15)
 
     useEffect(() => {
         setCount(0)
@@ -37,12 +37,16 @@ function Library({fullCardList}) {
         }
     }
 
+    // {filteredCardList.map((card, index) => <Card key={index} card={card}/>)}
+
     return (
         <div>
             Library!!
             <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
             <SearchBar setSearchBarValue={setSearchBarValue} />
-            <Card cardList={filteredCardList.slice(count, count+15)} />
+            <div className="card-holder">
+                {filteredCardList.map((card, index) => <Card key={index} card={card} userLibraryCount={userLibraryCount} style="card" />)}
+            </div>            
             <button type="button" class="btn btn-primary" onClick={handlePageDown}>Previous Page</button>
             <button type="button" class="btn btn-primary" onClick={handlePageUp}>Next Page</button>
         </div>

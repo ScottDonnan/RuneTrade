@@ -25,7 +25,7 @@ function CardList({fullCardList}) {
             && card.set.includes(selectedSet)
             && card.rarity.toLowerCase().includes(selectedRarity.toLowerCase())
         )
-    })
+    }).slice(count, count+15)
 
     useEffect(() => {
         setCount(0)
@@ -43,13 +43,14 @@ function CardList({fullCardList}) {
         }
     }
     
-
     return (
         <div>
             CardList!!
             <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
             <SearchBar setSearchBarValue={setSearchBarValue} />
-            <Card cardList={filteredCardList.slice(count, count+15)} />
+            <div className="card-holder">
+                {filteredCardList.map((card, index) => <Card key={index} card={card} style="noStyle"/>)}
+            </div>
             <button type="button" class="btn btn-primary" onClick={handlePageDown}>Previous Page</button>
             <button type="button" class="btn btn-primary" onClick={handlePageUp}>Next Page</button>
         </div>

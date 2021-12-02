@@ -1,20 +1,10 @@
 import '../App.css'
 
-function Card({cardList}) {
-    let keyCount = 0
-    const cardDisplayArray = cardList.map(card => {
-        keyCount++
-        return(
-            <div className="card">
-                <img key={keyCount} style={{width: "90%"}} src={card.card_image} />
-                Card Count:
-            </div>
-        )
-    })
-
+function Card({card, style, userLibraryCount}) {
     return (
-        <div className="card-holder">
-            {cardDisplayArray}
+        <div className={style}>
+            <img style={{width: "90%"}} src={card.card_image} />
+            {userLibraryCount[card.name]}
         </div>
     )
 }

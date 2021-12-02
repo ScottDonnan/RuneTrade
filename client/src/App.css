@@ -22,10 +22,31 @@
 .card {
     width: 20%;
     margin-bottom: 20px;
+    margin-right: 0;
     text-align: center;
+    border: 0;
 }
 
 .card-holder {
     display: flex;
     flex-wrap: wrap;
 }
+
+.newForm {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.clicking {
+    width: 20%;
+}
+
+.mytraded-accepted-card {
+    display: flex;
+}
+/* .card-holder div {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+} */
