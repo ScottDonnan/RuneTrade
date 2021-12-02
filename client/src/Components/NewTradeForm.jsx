@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Card from './Card'
 
-function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc, updateListedStatus}) {
+function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc, updateListedStatus, userLibraryCount}) {
     
     const [tradeNote, setTradeNote] = useState('')
     const [selectedLibrary, setSelectedLibrary] = useState('')
@@ -80,7 +80,7 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
                                         </form>
                                     </div>
                                     
-                                        {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard"/></div>)}
+                                        {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard" userLibraryCount={userLibraryCount} /></div>)}
                                     
                                 </div>
 

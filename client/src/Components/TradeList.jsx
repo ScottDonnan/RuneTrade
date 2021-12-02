@@ -6,7 +6,7 @@ import MyTrades from "./MyTrades"
 import {Routes, Route} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
-function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, tradeCreateSucc, setTradeCreateSucc, tradeCancelled, setTradeCancelled, accepterCardOffered, setAccepterCardOffered, tradeDeclined, setTradeDeclined}) {
+function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, tradeCreateSucc, setTradeCreateSucc, tradeCancelled, setTradeCancelled, accepterCardOffered, setAccepterCardOffered, tradeDeclined, setTradeDeclined, userLibraryCount}) {
     const [tradesList, setTradesList] = useState([])
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function TradeList({loggedInUser, userLibrary, tradeExecuted, setTradeExecuted, 
         <div className="wrapper">
             <TradeListNav />
             <Routes>
-                <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} />} />
+                <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} userLibraryCount={userLibraryCount}/>} />
                 <Route path="my_trades" element={<MyTrades loggedInUser={loggedInUser} tradesList={tradesList} setTradeCancelled={setTradeCancelled} tradeCancelled={tradeCancelled} updateListedStatus={updateListedStatus} />} />
                 <Route path="my_accepted_trades" element={<MyAcceptedTrades tradesList={tradesList} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} updateListedStatus={updateListedStatus} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} />} />
                 <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} updateListedStatus={updateListedStatus} />} />

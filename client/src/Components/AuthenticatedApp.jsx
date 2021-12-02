@@ -38,31 +38,17 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
         userLibraryCount[card.name] = (userLibraryCount[card.name] || 0) + 1;
     })
     
-    
-    // const justCardId = userLibraryCards.map(card => card.id)
-
     const noDuplicateCards = [...new Set(userLibraryCards.map(card => card.id))].map(id => {
         return userLibraryCards.find(card => card.id === id)
     })
-
-    // const noDuplicateCards = noDuplicateIds.map(id => {
-    //     return userLibraryCards.find(card => card.id === id)
-    // })
-
-    console.log(noDuplicateCards)
-
-
-    // let x = new Set(userLibraryCards)
-    // console.log(x)
-    
 
     return(
         <div>
             Authenticated App!!
             <Routes>
                 <Route exact path='/' element={<Home />} />
-                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} />} />
-                <Route path='library' element={<Library fullCardList={userLibraryCards} userLibraryCount={userLibraryCount} />} />
+                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} userLibraryCount={userLibraryCount} />} />
+                <Route path='library' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
                 <Route path='cards' element={<CardList fullCardList={fullCardList} />} />
                 <Route path='loot' element={<Loot fullCardList={fullCardList} loggedInUser={loggedInUser} randomCardArray={randomCardArray} setRandomCardArray={setRandomCardArray} />} />
             </Routes>
