@@ -1,19 +1,19 @@
 import '../App.css'
-import {Link, useParams} from 'react-router-dom'
 
 function Card({cardList}) {
-    let { id } = useParams()
-
+    let keyCount = 0
     const cardDisplayArray = cardList.map(card => {
+        keyCount++
         return(
-            <img to="cards/:id" key={card.id} style={{width: "20%"}} src={card.card_image} />
+            <div className="card">
+                <img key={keyCount} style={{width: "90%"}} src={card.card_image} />
+                Card Count:
+            </div>
         )
     })
 
-    console.log(cardDisplayArray)
-
     return (
-        <div to="/cards/:id">
+        <div className="card-holder">
             {cardDisplayArray}
         </div>
     )

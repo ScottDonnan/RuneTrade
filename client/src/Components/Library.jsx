@@ -37,16 +37,6 @@ function Library({fullCardList}) {
         }
     }
 
-    const counts = {}
-    
-    fullCardList.forEach((card) => {
-        counts[card.name] = (counts[card.name] || 0) + 1;
-    })
-
-    console.log('library counts', counts)
-    
-    console.log(filteredCardList)
-
     return (
         <div>
             Library!!

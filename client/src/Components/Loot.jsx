@@ -1,8 +1,7 @@
 import {useState} from 'react'
 import LootCard from './LootCard'
 
-function Loot({fullCardList, loggedInUser}){
-    const [randomCardArray, setRandomCardArray] = useState([])
+function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray}){
     const [newBox, setNewBox] = useState(true)
     
     function generateCards() {

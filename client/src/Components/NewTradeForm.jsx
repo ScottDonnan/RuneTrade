@@ -55,14 +55,6 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
     }
 
     const createTradeForm = <div class="container-md border">
-                                {/* <div class="row g-6">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name" aria-label="First name" />
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" />
-                                    </div>
-                                </div> */}
                                 <form class="col g-3" onSubmit={createTrade}>
                                     <div col-md-6>
                                         <label for="inputState" class="form-label">Select Trade Card</label>
