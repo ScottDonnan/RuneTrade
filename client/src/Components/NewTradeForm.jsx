@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Card from './Card'
+import SearchBar from './SearchBar'
 
 function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc, updateListedStatus, userLibraryCount}) {
     
@@ -78,6 +79,7 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
                                             </div>
                                             <button type="submit" class="btn btn-primary">Offer</button>
                                         </form>
+                                        {/* <SearchBar /> */}
                                     </div>
                                     
                                         {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard" userLibraryCount={userLibraryCount} /></div>)}

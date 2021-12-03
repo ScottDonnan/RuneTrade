@@ -6,18 +6,26 @@ import Navigation from "./Components/Navigation"
 
 function App() {
   const [fullCardList, setFullCardList] = useState([])
-  const [loggedInUser, setLoggedInUser] = useState({id: 2})
+  const [loggedInUser, setLoggedInUser] = useState(null)
 
   useEffect(() => {
-    fetch('/cards')
-    .then(resp => resp.json())
-    .then(data => setFullCardList(data))
+    fetch('/cards').then(resp => resp.json()).then(data => setFullCardList(data))
+  }, [])
+
+  useEffect(() => {
+    fetch('/me').then(resp => {
+      if(resp.ok) {
+        resp.json().then(user => setLoggedInUser(user))
+      } else {
+        resp.json().then(data => console.log(data))
+      }
+    })
   }, [])
 
   return (
     <BrowserRouter>
         <Navigation loggedInUser={loggedInUser} />
-        {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} /> : <UnauthenticatedApp fullCardList={fullCardList}/>}
+        {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} /> : <UnauthenticatedApp fullCardList={fullCardList} setLoggedInUser={setLoggedInUser}/>}
     </BrowserRouter>
   );
 }

@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
-    def me 
-        
+    def show 
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: user
+        else
+            render json: {errors: "no active session"}, status: :unauthorized
+        end
     end
 
     def user_single_library
@@ -27,10 +32,11 @@ class UsersController < ApplicationController
         end
     end
     
-    def signup
+    def create
         user = User.create(user_params)
         if user.valid?
-            render json: user
+            session[:user_id] = user.id
+            render json: user, status: :created
         else
             render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
         end
@@ -39,6 +45,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit :user_name, :password_digest, :email
+        params.permit :user_name, :password, :email, :password_confirmation
     end
 end

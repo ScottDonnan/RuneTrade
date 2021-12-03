@@ -17,13 +17,16 @@ function AuthenticatedApp({fullCardList, loggedInUser}) {
     const [randomCardArray, setRandomCardArray] = useState([])
     const userLibraryCards = userLibrary.map(library => library.card).sort(compare)
     const userLibraryCount = {}
-
+    
     useEffect(() => {
         fetch(`/userlibrary/${loggedInUser.id}`)
-        .then(resp => resp.json())
-        .then(data => setUserLibrary(data))
+        .then(resp => {
+            if(resp.ok) {
+                resp.json().then(data => setUserLibrary(data))
+            }
+        })
     }, [tradeExecuted, tradeCreateSucc, tradeCancelled, accepterCardOffered, tradeDeclined, randomCardArray])
-
+    
     function compare(a, b) {
         if (a.name < b.name) {
             return -1

@@ -55310,8 +55310,9 @@ set_four = [
 
   # # Create 2 users
 
-  User.create(user_name: "Scott", password_digest: "password", email: 'scott@scott.com')
-  User.create(user_name: "Clayton", password_digest: "password", email: 'clayton@clayton.com')
+  User.create(user_name: "Scott", password: "password123", password_confirmation: "password123", email: 'scott@scott.com')
+  User.create(user_name: "Clayton", password: "password123", password_confirmation: "password123", email: 'clayton@clayton.com')
+  User.create(user_name: "Lane", password: "password123", password_confirmation: "password123", email: 'lane@lane.com')
 
 
   # # # add cards to user library

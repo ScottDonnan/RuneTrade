@@ -10,7 +10,11 @@ function Navigation({loggedInUser}) {
                                     </li>
                                     <li class="nav-item">
                                         <Link to="loot" class="nav-link">Loot</Link>
-                                    </li></>
+                                    </li>
+                                    <li class="nav-item">
+                                        <Link to="logout" class="nav-link">Logout {loggedInUser?.user_name}</Link>
+                                    </li>
+                                    </>
 
     return(
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
@@ -23,6 +27,9 @@ function Navigation({loggedInUser}) {
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <Link to="/cards" class="nav-link" aria-current="page" href="#">Cards</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/login" class="nav-link" aria-current="page" href="#">Login</Link>
                         </li>
                         {loggedInUser ? authenticatedNavBar : null}                       
                     </ul>

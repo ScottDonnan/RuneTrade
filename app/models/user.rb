@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    validates :user_name, :password_digest, :email, presence: true
+    validates :user_name, :password_digest, :email, :password_confirmation, presence: true
     validates :user_name, uniqueness: true
 
     def user_card_lib(card)
