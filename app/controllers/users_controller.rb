@@ -42,9 +42,22 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        user = User.find(params[:id])
+        if user.update(user_update_params)
+            render json: user
+        else
+            render json: {errors: user.errors.full_messages}, status: :not_found
+        end
+    end
+
     private
 
     def user_params
-        params.permit :user_name, :password, :email, :password_confirmation
+        params.permit :user_name, :password, :email, :password_confirmation, :loot_token
+    end
+
+    def user_update_params
+        params.permit :loot_token
     end
 end

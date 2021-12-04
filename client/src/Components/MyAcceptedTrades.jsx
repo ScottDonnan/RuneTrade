@@ -2,7 +2,7 @@ import TradeCard from "./TradeCard"
 import Comment from "./Comment"
 import { useRoutes } from "react-router"
 
-function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExecuted, tradeCancelled, setTradeCancelled, updateListedStatus, setTradeDeclined, tradeDeclined}) {
+function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeExecuted, tradeExecuted, tradeCancelled, setTradeCancelled, updateListedStatus, setTradeDeclined, tradeDeclined}) {
     const myAcceptedTradesList = tradesList.filter(trade => trade.trade_proposer_id === loggedInUser.id && trade.executed !== true && trade.accepter_library_id)
     let submitButton
     let buttonToDisplay
@@ -11,12 +11,13 @@ function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExec
         e.preventDefault()
         if (submitButton === "Accept") {
             const proposerLibraryObj = {
-                user_id: trade.trade_accepter_id
+                user_id: trade.trade_accepter_id,
             }
             const accepterLibraryObj = {
                 user_id: trade.trade_proposer_id
             }
             updateProposerLibrary(trade, proposerLibraryObj)
+            updateProposerLootToken(trade)
             updateAccepterLibrary(trade, accepterLibraryObj)
             updateListedStatus(trade.proposer_library_id, false)
             updateListedStatus(trade.accepter_library_id, false)
@@ -25,6 +26,21 @@ function MyAcceptedTrades({tradesList, loggedInUser, setTradeExecuted, tradeExec
         } else {
             cancelTrade(trade)
         }
+    }
+
+    function updateProposerLootToken(trade) {
+        const addLootToken = trade.trade_proposer.loot_token + 1
+        fetch(`/users/${trade.trade_proposer_id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({loot_token: addLootToken})
+        }).then (resp => {
+            if(resp.ok) {
+                resp.json().then(user => setLoggedInUser(user))
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
     }
 
     function updateProposerLibrary(trade, proposerLibraryObj){

@@ -1,8 +1,14 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import LootCard from './LootCard'
+import '../App.css'
 
-function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray}){
+function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, setLoggedInUser}){
     const [newBox, setNewBox] = useState(true)
+    let lootDisplay 
+    
+    useEffect(() => {
+        setRandomCardArray([])
+    }, [])
     
     function generateCards() {
         let numArray = []
@@ -33,6 +39,7 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray})
                 if(resp.ok) {
                     resp.json().then(data => console.log(data))
                     setRandomCardArray(cardArray)
+                    updateProposerLootToken(loggedInUser)
                 } else {
                     resp.json().then(data => console.log(data))
                 }
@@ -40,13 +47,41 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray})
         })
     }
 
-    return(
-        <div>
-            <button onClick={generateCards}>Open a Pack</button>
-            <div class="card-group">
-                {randomCardArray.map(card => <LootCard card={card} newBox={newBox} setNewBox={setNewBox} />)}
+    function updateProposerLootToken(user) {
+        const addLootToken = user.loot_token - 1
+        fetch(`/users/${user.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({loot_token: addLootToken})
+        }).then (resp => {
+            if(resp.ok) {
+                resp.json().then(user => setLoggedInUser(user))
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
+    }
+    
+    if (loggedInUser.loot_token > 0) {
+            lootDisplay = <div>
+                You have {loggedInUser.loot_token} tokens, click me for some new cards.
+                <br />
+                <img style={{width: '300px'}} onClick={generateCards} src="https://images.contentstack.io/v3/assets/blta38dcaae86f2ef5c/blt95b91d7af4d5c6a6/5fd2a6b07c43e43bf4196b87/1.16_patch_notes_zaun_cardback.png" />
             </div>
-        </div>
+        } else {
+            lootDisplay = <div>
+                Sorry, you need to accept more trades to get more Tokens
+            </div>
+        }
+       
+
+    return(
+        <>
+            {lootDisplay}
+            <div class="card-group">
+                    {randomCardArray.map(card => <LootCard card={card} newBox={newBox} setNewBox={setNewBox} />)}
+                </div>
+        </>
     )
 }
 

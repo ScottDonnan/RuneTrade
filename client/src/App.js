@@ -24,8 +24,8 @@ function App() {
 
   return (
     <BrowserRouter>
-        <Navigation loggedInUser={loggedInUser} />
-        {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} /> : <UnauthenticatedApp fullCardList={fullCardList} setLoggedInUser={setLoggedInUser}/>}
+        <Navigation loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
+        {loggedInUser ? <AuthenticatedApp loggedInUser={loggedInUser} fullCardList={fullCardList} setLoggedInUser={setLoggedInUser} /> : <UnauthenticatedApp fullCardList={fullCardList} setLoggedInUser={setLoggedInUser}/>}
     </BrowserRouter>
   );
 }

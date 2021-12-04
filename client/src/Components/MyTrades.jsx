@@ -4,7 +4,7 @@ import '../App.css'
 
 function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, updateListedStatus}) {
     const myProposedTrades = tradesList.filter(trade => trade.trade_proposer_id === loggedInUser.id && trade.executed !== true)
-    const myExecutedTrades = tradesList.filter(trade => trade.executed === true)
+    const myExecutedTrades = tradesList.filter(trade => trade.executed === true && trade.trade_proposer_id === loggedInUser.id)
     const myAcceptedTrades = tradesList.filter(trade => trade.trade_accepter_id === loggedInUser.id && trade.executed !== true)
     
 

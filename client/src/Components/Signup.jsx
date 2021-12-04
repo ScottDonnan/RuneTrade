@@ -1,7 +1,37 @@
-function Signup() {
-    return(
+import {useState} from 'react'
+
+function Signup({setLoggedInUser}) {
+    const [signupSuccess, setSignupSuccess] = useState(null)
+    
+    function handleSignup(e) {
+        e.preventDefault()
+        const signupObj = {
+            user_name: e.target[0].value,
+            email: e.target[1].value,
+            password: e.target[2].value,
+            password_confirmation: e.target[3].value,
+            loot_token: 1
+        }
+        fetch('/signup', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(signupObj)
+        })
+        .then(resp => {
+            if (resp.ok) {
+                resp.json().then(user => {
+                    alert("thank you for signing up")
+                    setLoggedInUser(user)
+                })
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
+    }
+
+    return( 
         <div class="container">
-            <form>
+            <form onSubmit={handleSignup}>
                 <div class="mb-3">
                     <label for="userName" class="form-label">Username</label>
                     <input type="username" class="form-control" id="userName" />

@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
+import LogoutButton from './LogoutButton'
 
-function Navigation({loggedInUser}) {
+function Navigation({loggedInUser, setLoggedInUser}) {
     
     const authenticatedNavBar = <><li class="nav-item">
                                         <Link to="/library" class="nav-link" href="#">Library</Link>
@@ -12,7 +13,7 @@ function Navigation({loggedInUser}) {
                                         <Link to="loot" class="nav-link">Loot</Link>
                                     </li>
                                     <li class="nav-item">
-                                        <Link to="logout" class="nav-link">Logout {loggedInUser?.user_name}</Link>
+                                        <LogoutButton loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
                                     </li>
                                     </>
 
@@ -26,12 +27,9 @@ function Navigation({loggedInUser}) {
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <Link to="/cards" class="nav-link" aria-current="page" href="#">Cards</Link>
+                            <Link to="/" class="nav-link" aria-current="page" href="#">Cards</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link to="/login" class="nav-link" aria-current="page" href="#">Login</Link>
-                        </li>
-                        {loggedInUser ? authenticatedNavBar : null}                       
+                        {loggedInUser ? authenticatedNavBar : <li class="nav-item"><Link to="/login" class="nav-link" aria-current="page" href="#">Login</Link></li>}                       
                     </ul>
                 </div>
             </div>

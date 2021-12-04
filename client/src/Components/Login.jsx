@@ -5,7 +5,6 @@ function Login({setLoggedInUser}) {
     
     function handleLogin(e) {
         e.preventDefault()
-        // debugger
         const loginObj = {
             user_name: e.target[0].value,
             password: e.target[1].value,
@@ -19,7 +18,7 @@ function Login({setLoggedInUser}) {
             if(resp.ok) {
                 resp.json().then(user => setLoggedInUser(user))
             } else {
-                resp.json().then(data => console.log(data))
+                resp.json().then(data => alert(data.errors))
             }
         })
     }
