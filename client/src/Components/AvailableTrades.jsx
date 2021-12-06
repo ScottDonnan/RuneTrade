@@ -69,15 +69,18 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
                             </select>
                         </div>
                         <Comment />
-                        {trade.trade_comments.map(comment => <div>User:{comment?.user.user_name} <br /> Comment: {comment.comment}</div>)}
+                        <ul className="note-list">
+                            <h3>Comments:</h3>
+                            {trade.trade_comments.map(comment => <li>{comment?.user.user_name}: {comment.comment}</li>)}
+                        </ul>
                         <button href="#" class="btn btn-primary" type="submit">Submit Trade</button>
                     </form>
                 </div>
     })
     
     return (
-        <div>
-            { accepterCardOffered ? <button onClick={() => setAccepterCardOffered(false)}>another trade</button> : availableTradeList }
+        <div className="available-trades">
+            { accepterCardOffered ? <button class="btn btn-primary" onClick={() => setAccepterCardOffered(false)}>another trade</button> : availableTradeList }
         </div>
     )
 }

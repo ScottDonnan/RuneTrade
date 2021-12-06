@@ -9,9 +9,10 @@
 .title {
     text-align: center;
 }
-.test {
-    display: grid;
-    justify-content: center;    
+.my-trades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
 
 }
 
@@ -76,22 +77,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.pending-trade {
-    margin-bottom: 4%;
-    width: 60%;
-    text-align: center;
-    box-shadow: 10px 10px 20px black;
-    
-}
-
-.pending-trade-cards {
-    display: flex;   
-}
-
-.library {
-
 }
 
 .libMessage {
@@ -162,6 +147,45 @@
     width: 20%;
     box-shadow: 5px 5px 10px black;
 }
+
+.pending-trade {
+    margin: 4% 4%;
+    width: 60%;
+    text-align: center;
+    box-shadow: 10px 10px 20px black;
+    border-radius: 10px;
+}
+
+.pending-trade-cards {
+    display: flex;   
+}
+
+.available-trades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trade-card {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12%;
+}
+
+.note-list {
+    box-shadow: 5px 5px 10px black;
+    border-radius: 10px;
+    margin: 4%;
+    text-align: left;
+}
+
+.note-list li {
+    list-style: none;
+    padding: 2%;
+    font-size: 20px;
+}
+
 
 /* .accepted-trades {
     align-self: center;

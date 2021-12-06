@@ -3,7 +3,7 @@ function TradeCard({tradeProposer, proposedLibrary}) {
     const proposerName = tradeProposer?.user_name
 
     return (
-        <div style={{width: "75%"}}>
+        <div className="trade-card">
             <div class="card-header">
                 Listed By: 
                 <h3>{proposerName}</h3>

@@ -57,7 +57,7 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
     }
 
     return(
-        <div className="test">
+        <div className="my-trades">
             <h2>------ Proposed Trades --------</h2>
             {tradeCancelled ? <button class="btn btn-primary" onClick={() => setTradeCancelled(false)}>View Trades</button> : displayProposedTrades}
             <br />
