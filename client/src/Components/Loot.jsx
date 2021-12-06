@@ -38,13 +38,13 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, 
             .then(resp => {
                 if(resp.ok) {
                     resp.json().then(data => console.log(data))
-                    setRandomCardArray(cardArray)
-                    updateProposerLootToken(loggedInUser)
                 } else {
                     resp.json().then(data => console.log(data))
                 }
             })
         })
+        setRandomCardArray(cardArray)
+        updateProposerLootToken(loggedInUser)
     }
 
     function updateProposerLootToken(user) {

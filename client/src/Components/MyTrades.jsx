@@ -17,7 +17,9 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
             })
 
     const displayAcceptedTrades = myAcceptedTrades.map(trade => {
-        return Cards(trade) 
+        return <div className="pending-trade">
+                    {Cards(trade)}
+                </div>  
     })
 
     const displayExecutedTrades = myExecutedTrades.map(trade => {

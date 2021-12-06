@@ -51,9 +51,9 @@ function AuthenticatedApp({fullCardList, loggedInUser, setLoggedInUser}) {
             {/* <Route exact path='/' element={<Home />} /> */}
             <Route path='/' element={<CardList fullCardList={fullCardList} />} />
             <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} userLibraryCount={userLibraryCount} />} />
-            <Route path='library' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
+            <Route path='library' element={<Library loggedInUser={loggedInUser} fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
             <Route path='loot' element={<Loot setLoggedInUser={setLoggedInUser} fullCardList={fullCardList} loggedInUser={loggedInUser} randomCardArray={randomCardArray} setRandomCardArray={setRandomCardArray} />} />
-            <Route path='*' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
+            <Route path='*' element={<Library loggedInUser={loggedInUser} fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
         </Routes>     
     )
 }

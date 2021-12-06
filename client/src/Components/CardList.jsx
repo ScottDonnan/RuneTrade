@@ -25,7 +25,7 @@ function CardList({fullCardList}) {
             && card.set.includes(selectedSet)
             && card.rarity.toLowerCase().includes(selectedRarity.toLowerCase())
         )
-    }).slice(count, count+15)
+    })
 
     useEffect(() => {
         setCount(0)
@@ -33,24 +33,26 @@ function CardList({fullCardList}) {
 
     function handlePageUp() {
         if (count+15 <= filteredCardList.length) {
-            setCount(count+15)
+            setCount(previous => previous + 15)
         }
+        console.log(filteredCardList)
     }
 
     function handlePageDown() {
         if (count >= 15) {
-            setCount(count-15)
+            setCount(previous => previous - 15)
         }
     }
     
     return (
         <div>
-            <div class="container px-5 pt-3">
+            <h2 className="title">Runeterra Card List</h2>
+            <div className="filters-and-search">
                 <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
                 <SearchBar setSearchBarValue={setSearchBarValue} />
             </div>
             <div className="card-holder">
-                {filteredCardList.map((card, index) => <Card key={index} card={card} style="card"/>)}
+                {filteredCardList.slice(count, count+15).map((card, index) => <Card key={index} card={card} style="card"/>)}
             </div>
             <button type="button" class="btn btn-primary" onClick={handlePageDown}>Previous Page</button>
             <button type="button" class="btn btn-primary" onClick={handlePageUp}>Next Page</button>

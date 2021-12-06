@@ -8,7 +8,7 @@ function Signup({setLoggedInUser}) {
             email: e.target[1].value,
             password: e.target[2].value,
             password_confirmation: e.target[3].value,
-            loot_token: 1
+            loot_token: 4
         }
         fetch('/signup', {
             method: "POST",
@@ -22,7 +22,7 @@ function Signup({setLoggedInUser}) {
                     setLoggedInUser(user)
                 })
             } else {
-                resp.json().then(data => console.log(data))
+                resp.json().then(data => alert(data.errors))
             }
         })
     }

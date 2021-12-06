@@ -6,6 +6,9 @@
     /* gap: 20%; */
 }
 
+.title {
+    text-align: center;
+}
 .test {
     display: grid;
     justify-content: center;    
@@ -38,7 +41,7 @@
 .card-holder {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5%;
+    margin: 5% 2% 0 2%;
 }
 
 .newForm {
@@ -85,6 +88,79 @@
 
 .pending-trade-cards {
     display: flex;   
+}
+
+.library {
+
+}
+
+.libMessage {
+    margin: 5%;
+    text-align: center;
+}
+
+.filters-and-search {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    grid-template-areas:
+        "filter"
+        "search";
+    row-gap: 10%;
+    margin: 2%;
+    
+    
+}
+
+.filters {
+    grid-area: filter;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    row-gap: 2%;
+    grid-template-areas:
+        "drop drop drop"
+        "land land land";
+    justify-content: center;
+}
+
+.drop-downs {
+    grid-area: drop;
+    display: flex;
+    justify-content: space-around;
+}
+
+.regions {
+    grid-area: land;
+    display: flex;
+    justify-content: center;
+}
+
+.filters select {
+    width: 10rem;
+}
+
+.search-bar {
+    grid-area: search;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input{
+    width: 80%;
+    height: 30px;
+    margin-left: 1%;
+    border-radius: 5px;
+}
+
+.card-image {
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px black;
+}
+
+.form-image {
+    width: 20%;
+    box-shadow: 5px 5px 10px black;
 }
 
 /* .accepted-trades {

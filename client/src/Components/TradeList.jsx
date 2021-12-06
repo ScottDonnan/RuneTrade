@@ -37,7 +37,7 @@ function TradeList({loggedInUser, setLoggedInUser, userLibrary, tradeExecuted, s
             <TradeListNav />
             <Routes >
                 <Route path="newtrade" element={<NewTradeForm loggedInUser={loggedInUser} userLibrary={userLibrary} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} updateListedStatus={updateListedStatus} userLibraryCount={userLibraryCount}/>} />
-                <Route path="my_trades" element={<MyTrades loggedInUser={loggedInUser} tradesList={tradesList} setTradeCancelled={setTradeCancelled} tradeCancelled={tradeCancelled} updateListedStatus={updateListedStatus} />} />
+                <Route path="/" element={<MyTrades loggedInUser={loggedInUser} tradesList={tradesList} setTradeCancelled={setTradeCancelled} tradeCancelled={tradeCancelled} updateListedStatus={updateListedStatus} />} />
                 <Route path="my_accepted_trades" element={<MyAcceptedTrades tradesList={tradesList} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} updateListedStatus={updateListedStatus} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} />} />
                 <Route path="availabletrades" element={<AvailableTrades tradesList={tradesList} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} loggedInUser={loggedInUser} userLibrary={userLibrary} updateListedStatus={updateListedStatus} />} />
             </Routes>

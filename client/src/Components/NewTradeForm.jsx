@@ -64,6 +64,7 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
     function handleNewTradeClick() {
         setSelectedLibrary('')
         setTradeCreateSucc(null)
+        setTradeNote('')
 
     }
 
@@ -90,7 +91,7 @@ const createTradeForm =             <div className="newFormPage">
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title">PLEASE SELECT A CARD TO TRADE</h5>
-                                                <img style={{width: "20%"}}src={selectedLibrary.card?.card_image} alt={selectedLibrary.card?.name} />
+                                                <img className="form-image" src={selectedLibrary.card?.card_image} alt={selectedLibrary.card?.name} />
                                                 <form class="col g-3" onSubmit={createTrade}>
                                                     <div class="input-group">
                                                         <span class="input-group-text" >ADD A COMMENT TO TRADE</span>
