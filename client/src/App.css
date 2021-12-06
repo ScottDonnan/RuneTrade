@@ -56,7 +56,8 @@
 
 .mytraded-accepted-card {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+
 }
 
 .tradeCard {
@@ -162,15 +163,17 @@
 
 .available-trades {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
     align-items: center;
+    justify-content: center;
 }
 
 .trade-card {
     width: 75%;
     display: flex;
     flex-direction: column;
-    margin-left: 12%;
+    /* margin-left: 12%; */
 }
 
 .note-list {
@@ -186,13 +189,38 @@
     font-size: 20px;
 }
 
-
-/* .accepted-trades {
-    align-self: center;
-} */
-/* .card-holder div {
+.accepted-trades {
     display: flex;
-    margin: 0;
-    padding: 0;
-    border: 0;
-} */
+    flex-direction: column;
+    align-items: center;
+}
+
+.pending-trade-available {
+    margin: 1%;
+    width: 40%;
+    text-align: center;
+    box-shadow: 10px 10px 20px black;
+    border-radius: 10px;
+}
+
+.loot-page {
+    text-align: center;
+}
+
+.loot-card-array {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.loot-card-array div {
+    width: 20%;
+    margin-top: 2%;
+}
+
+.loot-card-array div img {
+    width: 90%;
+}
+
+.another-trade-button {
+    text-align: center;
+}

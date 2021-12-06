@@ -12,7 +12,6 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
     function createTrade(e) {
         e.preventDefault()
         tradeComment = e.target[0].value
-        debugger
         const tradeObj = {
             trade_proposer_id: loggedInUser.id,
             proposer_library_id:  selectedLibrary.id,

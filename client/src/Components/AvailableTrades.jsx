@@ -58,9 +58,11 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
     }
 
     const availableTradeList = openMarketTrades.map(trade => {
-        return <div key={trade.id} className="pending-trade">
-                    <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
-                    <form class="col g-3" onSubmit={(e) => handleTradeAccepterOffer(e, trade.id)}>
+        return <div key={trade.id} className="pending-trade-available">
+                    <div className="mytraded-accepted-card">
+                        <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
+                    </div>                                     
+                    <form onSubmit={(e) => handleTradeAccepterOffer(e, trade.id)}>
                         <div col-md-6>
                             <label for="inputState" class="form-label">Select Trade Card</label>
                             <select id="inputState" class="form-select">
@@ -77,10 +79,15 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
                     </form>
                 </div>
     })
+
+    const anotherTradeButton = <div className="another-trade-button">
+            <h3>YOU'VE OFFERED A CARD IN TRADE</h3>
+            <button class="btn btn-primary" onClick={() => setAccepterCardOffered(false)}>Another Trade</button>
+    </div>
     
     return (
         <div className="available-trades">
-            { accepterCardOffered ? <button class="btn btn-primary" onClick={() => setAccepterCardOffered(false)}>another trade</button> : availableTradeList }
+            { accepterCardOffered ? anotherTradeButton : availableTradeList }
         </div>
     )
 }

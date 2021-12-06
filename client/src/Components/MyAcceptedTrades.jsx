@@ -129,7 +129,10 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
                         <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
                         <TradeCard tradeProposer={trade.trade_accepter} proposedLibrary={trade.accepter_library} />
                     </div>
-                    {trade.trade_comments.map(comment => <p>User: {comment?.user.user_name} <br /> Comment: {comment.comment}</p>)}
+                    <ul className="note-list">
+                            <h3>Comments:</h3>
+                            {trade.trade_comments.map(comment => <li>{comment?.user.user_name}: {comment.comment}</li>)}
+                        </ul>
                     <form onSubmit={(e) => processTrade(e, trade)}>
                         <Comment />
                         <button class="btn btn-success" value='Accept' onClick={() => submitButton = 'Accept'}>Accept Trade</button>

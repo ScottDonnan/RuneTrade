@@ -64,7 +64,7 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, 
     
     if (loggedInUser.loot_token > 0) {
             lootDisplay = <div>
-                <p>You have {loggedInUser.loot_token} tokens, click me for some new cards.</p>
+                <h3>You have {loggedInUser.loot_token} tokens, click me for some new cards.</h3>
                 <br />
                 <img style={{width: '300px'}} onClick={generateCards} src="https://images.contentstack.io/v3/assets/blta38dcaae86f2ef5c/blt95b91d7af4d5c6a6/5fd2a6b07c43e43bf4196b87/1.16_patch_notes_zaun_cardback.png" alt="runeterra card back"/>
             </div>
@@ -76,12 +76,12 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, 
        
 
     return(
-        <>
+        <div className="loot-page">
             {lootDisplay}
-            <div class="card-group">
+            <div className="loot-card-array">
                 {randomCardArray.map(card => <LootCard card={card} newBox={newBox} setNewBox={setNewBox} />)}
             </div>
-        </>
+        </div>
     )
 }
 
