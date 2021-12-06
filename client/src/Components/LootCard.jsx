@@ -17,7 +17,7 @@ function LootCard({card, newBox, setNewBox}) {
 
     return(
         <div class="card">
-                {cardDisplay ? <img class="card-img-top" src="https://i.redd.it/j0vji0femry41.png" onClick={handleShowCard} /> : <img src={card.card_image} class="card-img-top" className="card-back" alt={card.name} />}
+                {cardDisplay ? <img class="card-img-top" src="https://i.redd.it/j0vji0femry41.png" onClick={handleShowCard} alt="runeterra card back"/> : <img src={card.card_image} class="card-img-top" className="card-back" alt={card.name} />}
         </div>
     )
 }

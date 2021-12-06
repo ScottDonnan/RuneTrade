@@ -1,9 +1,11 @@
-import {useState} from 'react'
 
 function SearchBar({setSearchBarValue}) {
 
     return (
-        <input type="text" id="searchBar" name="searchBar" onChange={(e) => setSearchBarValue(e.target.value)} />
+        <div class="row">
+            <label for="searchBar" class="col">Search:</label>
+            <input class="col" type="text" id="searchBar" name="searchBar" onChange={(e) => setSearchBarValue(e.target.value)} />
+        </div>
     )
 }
 

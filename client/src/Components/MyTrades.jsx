@@ -10,9 +10,9 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
 
     
     const displayProposedTrades = myProposedTrades.map(trade => {
-        return <div>
+        return <div className="pending-trade">
                 {Cards(trade)}
-                <button onClick={() => cancelTrade(trade)}>Cancel Trade</button>
+                <button class="btn btn-danger" onClick={() => cancelTrade(trade)}>Cancel Trade</button>
                 </div>
             })
 
@@ -21,17 +21,16 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
     })
 
     const displayExecutedTrades = myExecutedTrades.map(trade => {
-        return Cards(trade) 
+        return <div className="pending-trade">
+                    {Cards(trade)}
+                </div> 
     })
 
     function Cards(trade) {
         return <div key={trade.id}>
-            Trade Id: {trade.id}
-            <br/>
-            Executed Status: {trade.executed ? "True" : "Not Executed"}
-            <br/>
-            Proposed By: {trade.trade_proposer?.user_name}
-            <br/>
+            <p>Trade Id: {trade.id}</p>
+            <p>Executed Status: {trade.executed ? "True" : "Not Executed"}</p>
+            <p>Initial Trade Proposed By: {trade.trade_proposer?.user_name}</p>
             <div className="mytraded-accepted-card">
                 {trade.trade_accepter ? <TradeCard tradeProposer={trade.trade_accepter} proposedLibrary={trade.accepter_library} /> : null}
                 <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
@@ -56,18 +55,18 @@ function MyTrades({tradesList, loggedInUser, tradeCancelled, setTradeCancelled, 
     }
 
     return(
-        <div>
-            ------ Proposed Trades --------
-            {tradeCancelled ? <button onClick={() => setTradeCancelled(false)}>View Trades</button> : displayProposedTrades}
+        <div className="test">
+            <h2>------ Proposed Trades --------</h2>
+            {tradeCancelled ? <button class="btn btn-primary" onClick={() => setTradeCancelled(false)}>View Trades</button> : displayProposedTrades}
             <br />
             <br />
             <br />
-            ------ Accepted Trades -------
+            <h2>------ Accepted Trades -------</h2>
             {displayAcceptedTrades}
             <br />
             <br />
             <br />
-            ------- Executed Trades --------
+            <h2>------- Executed Trades --------</h2>
             {displayExecutedTrades}
         </div>
     )

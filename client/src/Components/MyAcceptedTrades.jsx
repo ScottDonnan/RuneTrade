@@ -1,6 +1,6 @@
 import TradeCard from "./TradeCard"
 import Comment from "./Comment"
-import { useRoutes } from "react-router"
+import '../App.css'
 
 function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeExecuted, tradeExecuted, tradeCancelled, setTradeCancelled, updateListedStatus, setTradeDeclined, tradeDeclined}) {
     const myAcceptedTradesList = tradesList.filter(trade => trade.trade_proposer_id === loggedInUser.id && trade.executed !== true && trade.accepter_library_id)
@@ -123,8 +123,9 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
     }
     
     const MyAcceptedTradesDisplay = myAcceptedTradesList.map(trade => {
-        return  <div key={trade.id} class="container-md border">
-                    <div clas="card-group">
+        return  <div key={trade.id} className="pending-trade">
+                    <h2>Trade Number {trade.id}</h2>
+                    <div className="pending-trade-cards">
                         <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
                         <TradeCard tradeProposer={trade.trade_accepter} proposedLibrary={trade.accepter_library} />
                     </div>
@@ -132,7 +133,7 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
                     <form onSubmit={(e) => processTrade(e, trade)}>
                         <Comment />
                         <button class="btn btn-success" value='Accept' onClick={() => submitButton = 'Accept'}>Accept Trade</button>
-                        <button class="btn btn-danger" value='Decline' onClick={() => submitButton = 'Decline'}>Decline Trade</button>
+                        <button class="btn btn-danger m-2" value='Decline' onClick={() => submitButton = 'Decline'}>Decline Trade</button>
                         <button class="btn btn-primary" value='Cancel' onClick={() => submitButton = 'Cancel'}>Cancel Trade</button>
                     </form>
                 </div>
@@ -149,8 +150,7 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
     }
 
     return (
-        <div>
-            My Accepted Trades!
+        <div className="accepted-trades">
             {buttonToDisplay}
         </div>
     )

@@ -13,7 +13,7 @@ function LogoutButton({loggedInUser, setLoggedInUser}) {
     }
     
     return(
-        <button class="nav-link" onClick={handleLogout}>Logout {loggedInUser?.user_name}</button>
+        <button class="btn btn-primary position-absolute-end-0" onClick={handleLogout}>Logout {loggedInUser?.user_name}</button>
     )
 }
 

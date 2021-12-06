@@ -1,12 +1,20 @@
 .wrapper {
-    display: flex;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-column-gap: 10px;
+    justify-content: center;
+    /* gap: 20%; */
+}
+
+.test {
+    display: grid;
+    justify-content: center;    
+
 }
 
 .sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
+    width: 25%;
+    min-height: 100%;
 }
 
 .card-back {
@@ -30,6 +38,7 @@
 .card-holder {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 5%;
 }
 
 .newForm {
@@ -43,12 +52,44 @@
 
 .mytraded-accepted-card {
     display: flex;
+    justify-content: center;
 }
 
 .tradeCard {
     text-align: center;
 }
 
+.tradeForm {
+    text-align: center;
+    
+}
+
+.tradeCards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.trade-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pending-trade {
+    margin-bottom: 4%;
+    width: 60%;
+    text-align: center;
+    box-shadow: 10px 10px 20px black;
+    
+}
+
+.pending-trade-cards {
+    display: flex;   
+}
+
+/* .accepted-trades {
+    align-self: center;
+} */
 /* .card-holder div {
     display: flex;
     margin: 0;

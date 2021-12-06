@@ -41,7 +41,6 @@ function Library({fullCardList, userLibraryCount }) {
 
     return (
         <div>
-            Library!!
             <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
             <SearchBar setSearchBarValue={setSearchBarValue} />
             <div className="card-holder">

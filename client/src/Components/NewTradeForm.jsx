@@ -1,13 +1,12 @@
 import {useState} from 'react'
 import Card from './Card'
-import SearchBar from './SearchBar'
+import "../App.css"
 
 function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreateSucc, updateListedStatus, userLibraryCount}) {
     
     const [tradeNote, setTradeNote] = useState('')
     const [selectedLibrary, setSelectedLibrary] = useState('')
     const cardsAvailableToTrade = userLibrary.filter(library => !library.listed)
-    const userCards = userLibrary.map(library => library.card)
     let tradeComment
 
     function createTrade(e) {
@@ -62,38 +61,62 @@ function NewTradeForm({loggedInUser, userLibrary, tradeCreateSucc, setTradeCreat
         setSelectedLibrary(library)
     }
 
-    const createTradeForm =     <div className="newForm">
-                                    <div class="container-md border">
-                                        <img style={{width: "20%"}}src={selectedLibrary.card?.card_image} alt={selectedLibrary.card?.name} />
-                                        <form class="col g-3" onSubmit={createTrade}>
-                                            {/* <div col-md-6>
-                                                <label for="inputState" class="form-label">Select Trade Card</label>
-                                                <select id="inputState" class="form-select">
-                                                    <option selected>Card to Trade</option>
-                                                    {cardsAvailableToTrade.map(library => <option key={library.id} value={library.id}>{library.card.name}</option>)}
-                                                </select>
-                                            </div> */}
-                                            <div class="input-group input-group-lg">
-                                                <span class="input-group-text" id="inputGroup-sizing-lg">Add a Note</span>
-                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value={tradeNote} onChange={(e) => setTradeNote(e.target.value)} />
+    function handleNewTradeClick() {
+        setSelectedLibrary('')
+        setTradeCreateSucc(null)
+
+    }
+
+    // const createTradeForm =     <div className="newForm">
+    // //                                 <div class="container-md border" style={{marginTop: "5%"}}>
+    // //                                     Please select a card to trade
+    // //                                     <img style={{width: "20%"}}src={selectedLibrary.card?.card_image} alt={selectedLibrary.card?.name} />
+    // //                                     <form class="col g-3" onSubmit={createTrade}>
+    // //                                         <div class="input-group input-group-lg">
+    // //                                             <span class="input-group-text" id="inputGroup-sizing-lg">Add a Note</span>
+    // //                                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value={tradeNote} onChange={(e) => setTradeNote(e.target.value)} />
+    // //                                         </div>
+    // //                                         <button type="submit" class="btn btn-primary">Offer</button>
+    // //                                     </form>
+                                            // {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard" userLibraryCount={userLibraryCount} /></div>)}                                
+
+    // //                                 </div>
+    // //                             </div>
+
+const createTradeForm =             <div className="newFormPage">
+                                        <div className="tradeForm">
+                                            <div class="card-header">
+                                                NEW TRADE
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Offer</button>
-                                        </form>
-                                        {/* <SearchBar /> */}
+                                            <div class="card-body">
+                                                <h5 class="card-title">PLEASE SELECT A CARD TO TRADE</h5>
+                                                <img style={{width: "20%"}}src={selectedLibrary.card?.card_image} alt={selectedLibrary.card?.name} />
+                                                <form class="col g-3" onSubmit={createTrade}>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" >ADD A COMMENT TO TRADE</span>
+                                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value={tradeNote} onChange={(e) => setTradeNote(e.target.value)} />
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Offer Trade</button>
+                                                </form>
+                                            </div>
+                                            
+                                            <div class="card-footer text-muted mb-2">
+                                                NEW TRADE
+                                            </div>
+                                        </div>
+                                        <div className="tradeCards">
+                                            {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard" userLibraryCount={userLibraryCount} /></div>)}
+                                        </div>
                                     </div>
-                                    
-                                        {cardsAvailableToTrade.map((library, index) => <div className="clicking" key={index} onClick={() => handleClick(library)}><Card card={library.card} style="tradeCard" userLibraryCount={userLibraryCount} /></div>)}
-                                    
-                                </div>
+
 
     const tradeCreatedMessage = <div>
-                                    Trade Created!!
-                                    <button onClick={() => setTradeCreateSucc(null)}>New Trade</button>
+                                    <h2>CONGRATULATIONS YOU'VE OFFERED A TRADE</h2>
+                                    <button class="btn btn-primary" onClick={handleNewTradeClick}>New Trade</button>
                                 </div>
 
     return (
-        <div>
-            New Trade Form!!
+        <div style={{textAlign: "center"}}>
             {tradeCreateSucc ? tradeCreatedMessage : createTradeForm}
         </div>
     )

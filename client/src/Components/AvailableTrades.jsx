@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
 import TradeCard from "./TradeCard"
 import Comment from "./Comment"
+import '../App.css'
 
 function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffered, loggedInUser, userLibrary, updateListedStatus}) {
     const openMarketTrades = tradesList.filter(trade => trade.trade_proposer_id !== loggedInUser.id && trade.executed === null && trade.trade_accepter_id === null)
@@ -58,7 +58,7 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
     }
 
     const availableTradeList = openMarketTrades.map(trade => {
-        return <div key={trade.id}>
+        return <div key={trade.id} className="pending-trade">
                     <TradeCard tradeProposer={trade.trade_proposer} proposedLibrary={trade.proposer_library} />
                     <form class="col g-3" onSubmit={(e) => handleTradeAccepterOffer(e, trade.id)}>
                         <div col-md-6>
@@ -77,7 +77,6 @@ function AvailableTrades({tradesList, accepterCardOffered, setAccepterCardOffere
     
     return (
         <div>
-            Available Trades!
             { accepterCardOffered ? <button onClick={() => setAccepterCardOffered(false)}>another trade</button> : availableTradeList }
         </div>
     )

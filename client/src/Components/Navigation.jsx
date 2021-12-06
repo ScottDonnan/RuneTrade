@@ -12,13 +12,13 @@ function Navigation({loggedInUser, setLoggedInUser}) {
                                     <li class="nav-item">
                                         <Link to="loot" class="nav-link">Loot</Link>
                                     </li>
-                                    <li class="nav-item">
+                                    
                                         <LogoutButton loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser}/>
-                                    </li>
+                                    
                                     </>
 
     return(
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
             <div class="container-fluid">
                 <Link to="/" class="navbar-brand" href="#">RuneTrade</Link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

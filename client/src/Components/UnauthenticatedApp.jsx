@@ -20,12 +20,13 @@ function UnauthenticatedApp({fullCardList, setLoggedInUser}) {
     
     return(
         <div>
-            Unauthenticated App!!
+            
             <Routes>
                 <Route path='/' element={<CardList fullCardList={alphaList} />} />
                 <Route path='/cards/:id' element={<CardDetails />} />
                 <Route path='/login' element={<Login setLoggedInUser={setLoggedInUser} />} />
                 <Route path='/signup' element={<Signup setLoggedInUser={setLoggedInUser} />} />
+                <Route path='*' element={<CardList fullCardList={alphaList} />} />
 
             </Routes>
         </div>

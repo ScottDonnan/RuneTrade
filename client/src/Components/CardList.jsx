@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import Card from "./Card"
 import SearchBar from "./SearchBar"
 import FilterFields from "./FilterFields"
+import '../App.css'
 
 function CardList({fullCardList}) {
     const [searchBarValue, setSearchBarValue] = useState("")
@@ -10,7 +11,6 @@ function CardList({fullCardList}) {
     const [selectedSet, setSelectedSet] = useState("")
     const [selectedRarity, setSelectedRarity] = useState("")
     const [count, setCount] = useState(0)
-    const [seeDetails, setSeeDetails] = useState(null)
 
     
     // function findRegion(card) {
@@ -45,11 +45,12 @@ function CardList({fullCardList}) {
     
     return (
         <div>
-            CardList!!
-            <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
-            <SearchBar setSearchBarValue={setSearchBarValue} />
+            <div class="container px-5 pt-3">
+                <FilterFields selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} setSelectedType={setSelectedType} setSelectedSet={setSelectedSet} setSelectedRarity={setSelectedRarity} />
+                <SearchBar setSearchBarValue={setSearchBarValue} />
+            </div>
             <div className="card-holder">
-                {filteredCardList.map((card, index) => <Card key={index} card={card} style="noStyle"/>)}
+                {filteredCardList.map((card, index) => <Card key={index} card={card} style="card"/>)}
             </div>
             <button type="button" class="btn btn-primary" onClick={handlePageDown}>Previous Page</button>
             <button type="button" class="btn btn-primary" onClick={handlePageUp}>Next Page</button>

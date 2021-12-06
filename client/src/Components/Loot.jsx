@@ -64,13 +64,13 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, 
     
     if (loggedInUser.loot_token > 0) {
             lootDisplay = <div>
-                You have {loggedInUser.loot_token} tokens, click me for some new cards.
+                <p>You have {loggedInUser.loot_token} tokens, click me for some new cards.</p>
                 <br />
-                <img style={{width: '300px'}} onClick={generateCards} src="https://images.contentstack.io/v3/assets/blta38dcaae86f2ef5c/blt95b91d7af4d5c6a6/5fd2a6b07c43e43bf4196b87/1.16_patch_notes_zaun_cardback.png" />
+                <img style={{width: '300px'}} onClick={generateCards} src="https://images.contentstack.io/v3/assets/blta38dcaae86f2ef5c/blt95b91d7af4d5c6a6/5fd2a6b07c43e43bf4196b87/1.16_patch_notes_zaun_cardback.png" alt="runeterra card back"/>
             </div>
         } else {
             lootDisplay = <div>
-                Sorry, you need to accept more trades to get more Tokens
+                <h3>Sorry, you need to accept more trades to get more Tokens</h3>
             </div>
         }
        
@@ -79,8 +79,8 @@ function Loot({fullCardList, loggedInUser, randomCardArray, setRandomCardArray, 
         <>
             {lootDisplay}
             <div class="card-group">
-                    {randomCardArray.map(card => <LootCard card={card} newBox={newBox} setNewBox={setNewBox} />)}
-                </div>
+                {randomCardArray.map(card => <LootCard card={card} newBox={newBox} setNewBox={setNewBox} />)}
+            </div>
         </>
     )
 }

@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 import CardList from "./CardList"
 import {Routes, Route} from 'react-router-dom'
 import Library from "./Library"
-import Home from './Home'
 import TradeList from './TradeList'
 import Loot from './Loot'
 
@@ -48,16 +47,14 @@ function AuthenticatedApp({fullCardList, loggedInUser, setLoggedInUser}) {
     })
 
     return(
-        <div>
-            Authenticated App!!
-            <Routes>
-                {/* <Route exact path='/' element={<Home />} /> */}
-                <Route path='/' element={<CardList fullCardList={fullCardList} />} />
-                <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} userLibraryCount={userLibraryCount} />} />
-                <Route path='library' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
-                <Route path='loot' element={<Loot setLoggedInUser={setLoggedInUser} fullCardList={fullCardList} loggedInUser={loggedInUser} randomCardArray={randomCardArray} setRandomCardArray={setRandomCardArray} />} />
-            </Routes>
-        </div>       
+        <Routes>
+            {/* <Route exact path='/' element={<Home />} /> */}
+            <Route path='/' element={<CardList fullCardList={fullCardList} />} />
+            <Route path="trade/*" element={<TradeList userLibrary={userLibrary} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} tradeExecuted={tradeExecuted} setTradeExecuted={setTradeExecuted} tradeCreateSucc={tradeCreateSucc} setTradeCreateSucc={setTradeCreateSucc} tradeCancelled={tradeCancelled} setTradeCancelled={setTradeCancelled} accepterCardOffered={accepterCardOffered} setAccepterCardOffered={setAccepterCardOffered} tradeDeclined={tradeDeclined} setTradeDeclined={setTradeDeclined} userLibraryCount={userLibraryCount} />} />
+            <Route path='library' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
+            <Route path='loot' element={<Loot setLoggedInUser={setLoggedInUser} fullCardList={fullCardList} loggedInUser={loggedInUser} randomCardArray={randomCardArray} setRandomCardArray={setRandomCardArray} />} />
+            <Route path='*' element={<Library fullCardList={noDuplicateCards} userLibraryCount={userLibraryCount} />} />
+        </Routes>     
     )
 }
 

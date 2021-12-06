@@ -1,14 +1,16 @@
-import {useState, useEffect} from 'react'
 
 function TradeCard({tradeProposer, proposedLibrary}) {
     const proposerName = tradeProposer?.user_name
 
     return (
-        <div class="card bg-light" style={{width: "18rem"}}>
-            <img src={proposedLibrary?.card.card_image} class="card-img-top" alt="image for ..." />
+        <div style={{width: "75%"}}>
+            <div class="card-header">
+                Listed By: 
+                <h3>{proposerName}</h3>
+            </div>
+            <img src={proposedLibrary?.card.card_image} class="card-img-top" alt="Runeterra trading card" />
             <div class="card-body">
                 <h5 class="card-title">{proposedLibrary?.card.name}</h5>
-                <p class="card-text">User: {proposerName} <br />A brief Card description to go here</p>
             </div>
         </div>  
     )

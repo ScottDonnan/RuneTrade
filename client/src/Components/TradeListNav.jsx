@@ -4,14 +4,11 @@ import '../App.css'
 function TradeListNav() {
     return(
         
-            <nav className='sidebar' class="nav flex-column nav-pills navbar-light bg-light">
-                <div className="sidebar-header">
-                    <h3>Trade Sidebar</h3>
-                </div>
-                <Link to="newtrade" class="nav-link" aria-current="page">New Trade</Link>
-                <Link to="my_trades" class="nav-link">My Trades</Link>
-                <Link to="my_accepted_trades" class="nav-link">Trades Awaiting Approval</Link>
-                <Link to="availabletrades" class="nav-link">Available Trades</Link>
+            <nav class="nav flex-column">
+                <Link to="newtrade" class="btn btn-primary btn-block m-2 mt-4" aria-current="page">New Trade</Link>
+                <Link to="my_trades" class="btn btn-primary m-2">My Trades</Link>
+                <Link to="my_accepted_trades" class="btn btn-primary m-2">Trades Awaiting Approval</Link>
+                <Link to="availabletrades" class="btn btn-primary m-2">Available Trades</Link>
             </nav>
         
     )
