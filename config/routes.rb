@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get "/userlibrary/:id", to: "libraries#user_library"
   get "/users/:id/:card", to: "users#user_single_library"
+  post "/trades/email/:id", to: "trades#email"
   # get "/market_trades", to: "trades#market_trades"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   

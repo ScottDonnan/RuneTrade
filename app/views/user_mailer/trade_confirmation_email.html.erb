@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for your trade, <%= @user.user_name %></h1>
+    <p>
+      <%= @proposer_card.name %> has been traded for <%= @accepter_card.name %>. 
+    </p>
+    <img src=<%= @proposer_card.card_image %> >
+    <img src=<%= @accepter_card.card_image %> >
+    <p>
+      To to view your completed trades follow this link: <%= @trade_url %>.
+    </p>
+    <p>Thanks for trading and have a great day!</p>
+  </body>
+</html>

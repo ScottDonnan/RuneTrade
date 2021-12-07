@@ -41,6 +41,21 @@ class TradesController < ApplicationController
         end
     end
 
+    def email
+        user1 = User.find_by(id: params[:trade_proposer_id])
+        user2 = User.find_by(id: params[:trade_accepter_id])
+        trade = Trade.find_by(id: params[:id])
+        proposer_card = trade.proposer_library.card
+        accepter_card = trade.accepter_library.card
+        if user1.valid? && user2.valid? && trade.valid?
+            UserMailer.with(user: user1, trade: trade, proposer_card: proposer_card, accepter_card: accepter_card).trade_confirmation_email.deliver_later
+            UserMailer.with(user: user2, trade: trade, proposer_card: proposer_card, accepter_card: accepter_card).trade_confirmation_email.deliver_later
+            render json: trade
+        else
+            render json: {errors: [user1.errors.full_messages, user2.errors.full_messages, trade.errors.full_messages]}, status: :not_found
+        end
+    end
+
     private
 
     def trade_update_params

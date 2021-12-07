@@ -21,6 +21,7 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
             updateAccepterLibrary(trade, accepterLibraryObj)
             updateListedStatus(trade.proposer_library_id, false)
             updateListedStatus(trade.accepter_library_id, false)
+            sendConfirmationEmail(trade)
         } else if (submitButton === "Decline") {
             returnTrade(trade)
         } else {
@@ -116,6 +117,25 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
                 setTradeCancelled(true)
                 updateListedStatus(trade.proposer_library_id, false)
                 updateListedStatus(trade.accepter_library_id, false)
+            } else {
+                resp.json().then(data => console.log(data))
+            }
+        })
+    }
+
+    function sendConfirmationEmail(trade) {
+        const emailObj = {
+            trade_proposer_id: trade.trade_proposer_id,
+            trade_accepter_id: trade.trade_accepter_id,
+        }
+        fetch(`/trades/email/${trade.id}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(emailObj)
+        })
+        .then(resp => {
+            if (resp.ok) {
+                resp.json().then(data => console.log(data))
             } else {
                 resp.json().then(data => console.log(data))
             }
