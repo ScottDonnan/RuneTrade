@@ -55,6 +55,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "traderune_db_production"
 
+  config.action_mailer.delivery_method = :smtp
+  host = 'scott.donnan85@gmail.com' #replace with your own url
+  config.action_mailer.default_url_options = { host: host }
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => ENV['GOOGLE_USERNAME'],
+  :password             => ENV['GOOGLE_APP_PASS'],
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
