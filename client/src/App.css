@@ -119,6 +119,11 @@
     grid-area: land;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.regions p {
+    margin: 1%;
 }
 
 .filters select {
@@ -165,7 +170,7 @@
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: column; */
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
 
@@ -178,7 +183,7 @@
 
 .note-list {
     box-shadow: 5px 5px 10px black;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 4%;
     text-align: left;
 }
@@ -197,7 +202,7 @@
 
 .pending-trade-available {
     margin: 1%;
-    width: 40%;
+    width: 30%;
     text-align: center;
     box-shadow: 10px 10px 20px black;
     border-radius: 10px;

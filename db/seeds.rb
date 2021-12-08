@@ -55310,20 +55310,20 @@ set_four = [
 
   # # Create 2 users
 
-  User.create(user_name: "Scott", password: "password123", password_confirmation: "password123", email: 'scott@scott.com')
+  # User.create(user_name: "Scott", password: "password123", password_confirmation: "password123", email: 'scott@scott.com')
   User.create(user_name: "Clayton", password: "password123", password_confirmation: "password123", email: 'clayton@clayton.com')
   User.create(user_name: "Lane", password: "password123", password_confirmation: "password123", email: 'lane@lane.com')
 
 
   # # # add cards to user library
 
-  for i in 1..10 do
-    random_card_id = rand(1000)
+  for i in 1..15 do
+    random_card_id = rand(847)
     Library.create(user_id: 1, card_id: random_card_id)
   end
 
-  for i in 1..10 do
-    random_card_id = rand(1000)
+  for i in 1..15 do
+    random_card_id = rand(847)
     Library.create(user_id: 2, card_id: random_card_id)
   end
 

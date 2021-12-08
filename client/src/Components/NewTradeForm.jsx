@@ -113,6 +113,7 @@ const createTradeForm =             <div className="newFormPage">
 
     const tradeCreatedMessage = <div>
                                     <h2>CONGRATULATIONS YOU'VE OFFERED A TRADE</h2>
+                                    <h3>APPROVE TRADES AND GET MORE LOOT TOKENS TO EXPAND YOUR LIBRARY</h3>
                                     <button class="btn btn-primary" onClick={handleNewTradeClick}>New Trade</button>
                                 </div>
 

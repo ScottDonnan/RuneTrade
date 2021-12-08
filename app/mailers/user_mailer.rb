@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     def welcome_email
         @user = params[:user]
         @url = 'http://runetrade.herokuapp.com/login'
-        mail(to: @user.email, subject: 'Completed Trade')
+        mail(to: @user.email, subject: 'Welcome to TradeRune')
     end
 
     def trade_confirmation_email

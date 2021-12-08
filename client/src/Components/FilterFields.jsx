@@ -51,6 +51,7 @@ function FilterFields({selectedRegion, setSelectedRegion, setSelectedType, setSe
                     </div>
                 </div>
                     <div className="regions">
+                        <p>Region:</p>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" value="Bandle City" onChange={(e) => handleChange(e.target.value)} />
                             <label class="btn btn-outline-primary" for="btncheck1">Bandle City</label>
