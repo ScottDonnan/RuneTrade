@@ -163,7 +163,11 @@ function MyAcceptedTrades({tradesList, loggedInUser, setLoggedInUser, setTradeEx
     })
 
     if (tradeExecuted) {
-        buttonToDisplay = <button onClick={() => setTradeExecuted(false)}>Another Trade</button>
+        buttonToDisplay = <div>
+                            <h3>CONGRATULATIONS ON YOUR TRADE</h3>
+                            <p>You've received another loot token for more cards</p>
+                            <button class="btn btn-primary" onClick={() => setTradeExecuted(false)}>Another Trade</button>
+                        </div>
     } else if (tradeCancelled) {
         buttonToDisplay = <button onClick={() => setTradeCancelled(false)}>Another Trade</button>
     } else if(tradeDeclined) { 
