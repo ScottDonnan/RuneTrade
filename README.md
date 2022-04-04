@@ -1,7 +1,11 @@
 # README
 
 ## Description:
+https://runetrade.herokuapp.com/
+
 RuneTrade is a digital card-trading application that allows a user to collect their own “set” of cards through a randomized process and trade those cards with other users through an open market process.
+
+Utilized React.js for client side development.
 
 ## Dependencies:
 postgresql: use postgresql as the database for application
@@ -16,35 +20,32 @@ figaro: use to create secure environment variable for storing email username and
 
 Scripts to start up application
 
-## `rails db:migrate`
+### `npm install`
+    to install required react dependancies
+
+### `rails db:migrate`
     create database tables
 
-## `rails db:seed`
+### `rails db:seed`
     populate card data to postgresql database tables
     
-## `rails start`
+### `rails start`
     run development server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Getting Started with Create React App
 
-* Ruby version
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-* System dependencies
+## Available Scripts
 
-* Configuration
+In the project directory, you can run:
 
-* Database creation
+### `npm start --prefix client`
 
-* Database initialization
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-* How to run the test suite
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-https://runetrade.herokuapp.com/
